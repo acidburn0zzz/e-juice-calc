@@ -232,6 +232,7 @@ ApplicationWindow {
             MenuSeparator {}
             MenuItem {
                 text: 'Quit'
+                shortcut: 'Ctrl+Q'
                 onTriggered: Qt.quit()
             }
         }
