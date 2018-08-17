@@ -1,26 +1,19 @@
-{-# LANGUAGE TemplateHaskell #-}
-
 module Main where
 
 import Control.Exception
 import Data.Aeson
-import Data.Aeson.Encode.Pretty
 import Data.Text (Text)
-import qualified Data.Text as T
-import qualified Data.Text.Encoding as TE
-import qualified Data.ByteString.Char8 as B
-import qualified Data.ByteString.Lazy.Char8 as BL
 import Data.String.Conversions
 import Data.IORef
 import Graphics.QML
 import System.Directory
 
 import qualified Configuration as Configuration
-import qualified State as State
 import EJuiceCalc
+import qualified State as State
 
 -- load the inputdata given the configuration
-loadInputData :: IORef State.StateData -> Configuration.ConfigurationData -> IO (InputData)
+loadInputData :: IORef State.StateData -> Configuration.ConfigurationData -> IO InputData
 loadInputData state configuration = do
     let lastFile = Configuration.getLastFile configuration
     case lastFile of

@@ -3,7 +3,6 @@
 
 module EJuiceCalc where
 
-import Control.Monad
 import Data.Aeson
 import GHC.Generics
 
@@ -151,7 +150,7 @@ flavorToFlavorLiquid batchSize flavor = FlavorLiquid Liquid
 
 -- |Given the batch size and a list of flavors it returns a list of flavor liquids.
 flavorsToFlavorLiquids :: BatchSize -> [Flavor] -> [FlavorLiquid]
-flavorsToFlavorLiquids batchSize flavors = map (\f -> flavorToFlavorLiquid batchSize f) flavors
+flavorsToFlavorLiquids batchSize = map (flavorToFlavorLiquid batchSize)
 
 -- |Calculates a sub-liquid given a liquid ratio and an amount in milliliters.
 calcSubLiquid :: LiquidRatio -> Milliliter -> SubLiquid
@@ -167,7 +166,7 @@ calcSubLiquid lr la = SubLiquid
 
 -- |Sums up the amounts of a list of sub-liquids.
 sumSubLiquids :: [SubLiquid] -> SubLiquid
-sumSubLiquids xs = foldr (\(SubLiquid a1 a2) (SubLiquid b1 b2) -> (SubLiquid (a1+b1) (a2+b2))) (SubLiquid 0 0) xs
+sumSubLiquids = foldr (\(SubLiquid a1 a2) (SubLiquid b1 b2) -> (SubLiquid (a1+b1) (a2+b2))) (SubLiquid 0 0)
 
 -- |Calculates the sub-liquid of the target liquid.
 calcTargetSubLiquid :: BatchSize -> TargetLiquid -> SubLiquid
@@ -181,7 +180,7 @@ calcBaseSubLiquid batchSize (TargetLiquid targetLiquid) (BaseLiquid baseLiquid) 
 
 -- |Calculates the sub-liquid of a flavor liquid and returns them in a tuple.
 calcFlavorSubLiquid :: BatchSize -> [FlavorLiquid] -> [(FlavorLiquid, SubLiquid)]
-calcFlavorSubLiquid batchSize flavors = map (\(FlavorLiquid f) -> (FlavorLiquid f, calcSubLiquid (liquidRatio f) (safeLiquidAmount f))) flavors
+calcFlavorSubLiquid batchSize = map (\(FlavorLiquid f) -> (FlavorLiquid f, calcSubLiquid (liquidRatio f) (safeLiquidAmount f)))
     where
         safeLiquidAmount f = case liquidAmount f of
             Just x  -> x
@@ -219,7 +218,7 @@ calc inputData = result
         calculatedFlavors = calcFlavorSubLiquid batchSize flavorLiquids
         
 
-        (SubLiquid flavorPg flavorVg) = sumSubLiquids $ map (\(flavor, subliquid) -> subliquid) calculatedFlavors
+        (SubLiquid flavorPg flavorVg) = sumSubLiquids $ map snd calculatedFlavors
         
         -- calculate pg/vg which needs to be added
         (SubLiquid addPg addVg) = SubLiquid (targetPg - basePg - flavorPg) (targetVg - baseVg - flavorVg)
@@ -246,5 +245,5 @@ calc inputData = result
 
         result = Recipe
             { recipeLiquids = resultLiquids
-            , recipeSum = sum $ map (\x -> recipeLiquidAmount x) resultLiquids
+            , recipeSum = sum $ map recipeLiquidAmount resultLiquids
             }

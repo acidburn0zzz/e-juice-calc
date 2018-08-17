@@ -1,5 +1,4 @@
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 module Configuration where
 
@@ -19,14 +18,14 @@ instance FromJSON ConfigurationData
 
 -- |Gets the last file which has been used.
 getLastFile :: ConfigurationData -> Maybe FilePath
-getLastFile configuration = configurationLastFile configuration
+getLastFile = configurationLastFile
 
 -- |Sets the last file which has been used.
 setLastFile :: ConfigurationData -> Maybe FilePath -> ConfigurationData
 setLastFile configuration filePath = configuration { configurationLastFile = filePath }
 
 -- |Loads a configuration and returns the default if unsuccessful.
-load :: FilePath -> IO (ConfigurationData)
+load :: FilePath -> IO ConfigurationData
 load filePath = do
     let defaultConfig = ConfigurationData { configurationLastFile = Nothing }
     configurationData <- try (readFile filePath) :: IO (Either SomeException String)
@@ -39,7 +38,7 @@ load filePath = do
                 Nothing     -> defaultConfig
 
 -- |Saves a configuration given a FilePath.
-save :: ConfigurationData -> FilePath -> IO (Bool)
+save :: ConfigurationData -> FilePath -> IO Bool
 save configuration filePath = do
     saved <- try (writeFile filePath (cs $ encode configuration)) :: IO (Either SomeException ())
     case saved of
