@@ -1,18 +1,18 @@
 name:                e-juice-calc
 version:             0.1.0.0
 github:              "githubuser/e-juice-calc"
-license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2018 Author name here"
+license:             GPLv2
+author:              "Richard Szibele"
+maintainer:          "richard@szibele.com"
+copyright:           "2018 Richard Szibele"
 
 extra-source-files:
 - README.md
 - ChangeLog.md
 
 # Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
+# synopsis:            Application to help with mixing e-juice
+# category:            Program
 
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
@@ -21,6 +21,13 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- text
+- bytestring
+- string-conversions
+- aeson
+- aeson-pretty
+- directory
+- hsqml
 
 library:
   source-dirs: src
