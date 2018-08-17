@@ -8,7 +8,6 @@ import Data.Aeson
 import Data.String.Conversions
 import Data.Text (Text)
 import qualified Data.Text as T
-import qualified Data.Text.IO as TIO
 import GHC.Generics
 
 data ConfigurationData = ConfigurationData
@@ -18,17 +17,19 @@ instance ToJSON ConfigurationData where
     toEncoding = genericToEncoding defaultOptions
 instance FromJSON ConfigurationData
 
+-- |Gets the last file which has been used.
 getLastFile :: ConfigurationData -> Maybe FilePath
 getLastFile configuration = configurationLastFile configuration
 
+-- |Sets the last file which has been used.
 setLastFile :: ConfigurationData -> Maybe FilePath -> ConfigurationData
 setLastFile configuration filePath = configuration { configurationLastFile = filePath }
 
--- tries to load the configuration and returns the default if it can't
+-- |Loads a configuration and returns the default if unsuccessful.
 load :: FilePath -> IO (ConfigurationData)
 load filePath = do
     let defaultConfig = ConfigurationData { configurationLastFile = Nothing }
-    configurationData <- try (TIO.readFile filePath) :: IO (Either SomeException Text)
+    configurationData <- try (readFile filePath) :: IO (Either SomeException String)
     pure $ case configurationData of
         Left _ -> defaultConfig
         Right str -> do
@@ -37,9 +38,10 @@ load filePath = do
                 Just config -> config
                 Nothing     -> defaultConfig
 
+-- |Saves a configuration given a FilePath.
 save :: ConfigurationData -> FilePath -> IO (Bool)
 save configuration filePath = do
-    saved <- try (TIO.writeFile filePath (cs $ encode configuration)) :: IO (Either SomeException ())
+    saved <- try (writeFile filePath (cs $ encode configuration)) :: IO (Either SomeException ())
     case saved of
         Left _  -> pure False
         Right _ -> pure True

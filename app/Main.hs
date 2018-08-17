@@ -7,7 +7,6 @@ import Data.Aeson
 import Data.Aeson.Encode.Pretty
 import Data.Text (Text)
 import qualified Data.Text as T
-import qualified Data.Text.IO as TIO
 import qualified Data.Text.Encoding as TE
 import qualified Data.ByteString.Char8 as B
 import qualified Data.ByteString.Lazy.Char8 as BL
@@ -18,7 +17,7 @@ import System.Directory
 
 import qualified Configuration as Configuration
 import qualified State as State
-import Lib
+import EJuiceCalc
 
 -- load the inputdata given the configuration
 loadInputData :: IORef State.StateData -> Configuration.ConfigurationData -> IO (InputData)
@@ -26,7 +25,7 @@ loadInputData state configuration = do
     let lastFile = Configuration.getLastFile configuration
     case lastFile of
         Just lf -> do
-            fileData <- try (TIO.readFile lf) :: IO (Either SomeException Text)
+            fileData <- try (readFile lf) :: IO (Either SomeException String)
             case fileData of
                 Left _  -> pure $ defaultInputData
                 Right fd -> do
@@ -86,7 +85,7 @@ haskellOpen :: IORef State.StateData -> Text -> IO (Maybe Text)
 haskellOpen state filePath = do
     -- the file should exists because it has either
     -- been loaded from the configuration or the user selected it in a dialog
-    result <- try (TIO.readFile (cs filePath)) :: IO (Either SomeException Text)
+    result <- try (readFile (cs filePath)) :: IO (Either SomeException String)
     let inputStr = case result of
                    Left _    -> encode (Nothing :: Maybe Text)
                    Right str -> cs str
@@ -106,7 +105,7 @@ haskellSave state filePath inputStr = do
     case inputData of
         Just x -> do
             -- valid - try to write the file
-            result <- try (B.writeFile (cs filePath) (cs inputStr)) :: IO (Either SomeException ())
+            result <- try (writeFile (cs filePath) (cs inputStr)) :: IO (Either SomeException ())
             case result of
                 Left _ -> pure False
                 Right _ -> do
