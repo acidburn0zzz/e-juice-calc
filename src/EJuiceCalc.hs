@@ -6,9 +6,9 @@ module EJuiceCalc where
 import Data.Aeson
 import GHC.Generics
 
--- |The version of the program.
+-- |The version of E-Juice-Calc.
 version :: String
-version = "0.1.0.0"
+version = "1.0.0"
 
 -- |Type alias for milliliters.
 type Milliliter = Double
