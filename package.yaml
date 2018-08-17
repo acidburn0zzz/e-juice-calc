@@ -33,7 +33,7 @@ library:
   source-dirs: src
 
 executables:
-  e-juice-calc-exe:
+  ejuicecalc:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -44,7 +44,7 @@ executables:
     - e-juice-calc
 
 tests:
-  e-juice-calc-test:
+  ejuicecalc-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
