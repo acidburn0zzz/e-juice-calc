@@ -1,7 +1,7 @@
 name:                e-juice-calc
 version:             1.0.0
 github:              "githubuser/e-juice-calc"
-license:             GPLv2
+license:             GPL-2
 author:              "Richard Szibele"
 maintainer:          "richard@szibele.com"
 copyright:           "2018 Richard Szibele"
