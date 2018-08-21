@@ -13,7 +13,7 @@ The features include:
 
 ## Building
 
-You will need to have stack and the Qt5 development files installed, to be able to build q-juice-calc.
+You will need to have stack installed, to be able to build q-juice-calc.
 
 To build e-juice-calc, run the following in the root directory:
 ````
