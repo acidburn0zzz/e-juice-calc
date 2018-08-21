@@ -39,7 +39,7 @@ loadInputData state configuration = do
             case fileData of
                 Left _  -> pure $ defaultInputData
                 Right fd -> do
-                    let decodedInputData = decode (cs fd) :: Maybe InputData
+                    let decodedInputData = decode (BL8.pack fd) :: Maybe InputData
                     case decodedInputData of
                         Just inputData  -> do
                             State.setFilePath state lf
@@ -110,7 +110,7 @@ defaultHeaders = [("Content-Type", "application/json")]
 -- helper function
 tryDecode :: FromJSON a => String -> ExceptT String IO a
 tryDecode str = do
-    let result = decode (cs str)
+    let result = decode (BL8.pack str)
     case result of
         Nothing -> throwE "Failed to decode the request body."
         Just x  -> ExceptT (pure (Right x))

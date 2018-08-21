@@ -1,5 +1,6 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE DuplicateRecordFields #-}
 
 module EJuiceCalc where
 
@@ -29,8 +30,8 @@ type Percentage = Int
 
 -- |Propylene glycol / vegetable glycerin ratio of a liquid in percent.
 data LiquidRatio = LiquidRatio
-    { liquidRatioPg :: Percentage -- ^ Propylene glycol percentage of the liquid.
-    , liquidRatioVg :: Percentage -- ^ Vegetable glycerin percentage of the liquid.
+    { pg :: Percentage -- ^ Propylene glycol percentage of the liquid.
+    , vg :: Percentage -- ^ Vegetable glycerin percentage of the liquid.
     } deriving (Generic, Show)
 instance ToJSON LiquidRatio where
     toEncoding = genericToEncoding defaultOptions
@@ -38,10 +39,10 @@ instance FromJSON LiquidRatio
 
 -- |Represents a liquid which can be the base liquid, target liquid or flavors.
 data Liquid = Liquid
-    { liquidName :: String              -- ^ Name of the liquid.
-    , liquidAmount :: Maybe Milliliter  -- ^ Amount of liquid in milliliters.
-    , liquidRatio :: LiquidRatio        -- ^ Propylene glycol / vegetable glycerin ratio.
-    , liquidNicotine :: Milligram       -- ^ Nicotine content per milliliter.
+    { name :: String              -- ^ Name of the liquid.
+    , amount :: Maybe Milliliter  -- ^ Amount of liquid in milliliters.
+    , ratio :: LiquidRatio        -- ^ Propylene glycol / vegetable glycerin ratio.
+    , nicotine :: Milligram       -- ^ Nicotine content per milliliter.
     } deriving (Generic, Show)
 instance ToJSON Liquid where
     toEncoding = genericToEncoding defaultOptions
@@ -58,9 +59,9 @@ instance FromJSON SubLiquid
 
 -- |Represents a flavor.
 data Flavor = Flavor
-    { flavorName :: String           -- ^ Name of the flavor.
-    , flavorPercentage :: Percentage -- ^ How much flavor should be used in percent in the targeted liquid.
-    , flavorIsVg :: Bool             -- ^ If the flavor is propylene glycol (PG) or vegetable glycerin (VG) based.
+    { name :: String           -- ^ Name of the flavor.
+    , percentage :: Percentage -- ^ How much flavor should be used in percent in the targeted liquid.
+    , isVg :: Bool             -- ^ If the flavor is propylene glycol (PG) or vegetable glycerin (VG) based.
     } deriving (Generic, Show)
 instance ToJSON Flavor where
     toEncoding = genericToEncoding defaultOptions
@@ -76,10 +77,10 @@ newtype FlavorLiquid = FlavorLiquid Liquid
 
 -- |Represents the required data for the calculation.
 data InputData = InputData
-    { inputDataBatchSize :: BatchSize       -- ^ Amount of liquid to make.
-    , inputDataBaseLiquid :: BaseLiquid     -- ^ Base liquid.
-    , inputDataFlavors :: [Flavor]          -- ^ List of flavors to be used.
-    , inputDataTargetLiquid :: TargetLiquid -- ^ The desired output liquid.
+    { batchSize :: BatchSize       -- ^ Amount of liquid to make.
+    , baseLiquid :: BaseLiquid     -- ^ Base liquid.
+    , flavors :: [Flavor]          -- ^ List of flavors to be used.
+    , targetLiquid :: TargetLiquid -- ^ The desired output liquid.
     } deriving (Generic, Show)
 instance ToJSON InputData where
     toEncoding = genericToEncoding defaultOptions
@@ -88,37 +89,37 @@ instance FromJSON InputData
 -- |The default input data, when none is given.
 defaultInputData :: InputData
 defaultInputData = InputData {
-      inputDataBatchSize = batchSize
-    , inputDataBaseLiquid = baseLiquid
-    , inputDataFlavors = flavors
-    , inputDataTargetLiquid = targetLiquid
+      batchSize = batchSize
+    , baseLiquid = baseLiquid
+    , flavors = flavors
+    , targetLiquid = targetLiquid
     }
     where
         batchSize = 10
         baseLiquid = BaseLiquid Liquid {
-              liquidName = "Nicotine Base"
-            , liquidAmount = Nothing
-            , liquidRatio = LiquidRatio
-                { liquidRatioPg = 100
-                , liquidRatioVg = 0
+              name = "Nicotine Base"
+            , amount = Nothing
+            , ratio = LiquidRatio
+                { pg = 100
+                , vg = 0
                 }
-            , liquidNicotine = 20
+            , nicotine = 20
             }
         targetLiquid = TargetLiquid Liquid {
-              liquidName = "Target Liquid"
-            , liquidAmount = Nothing
-            , liquidRatio = LiquidRatio
-                { liquidRatioPg = 60
-                , liquidRatioVg = 40
+              name = "Target Liquid"
+            , amount = Nothing
+            , ratio = LiquidRatio
+                { pg = 60
+                , vg = 40
                 }
-            , liquidNicotine = 3
+            , nicotine = 3
             }
         flavors = []
 
 -- |A Liquid in the recipe.
 data RecipeLiquid = RecipeLiquid
-    { recipeLiquidName :: String       -- ^ Name of the liquid.
-    , recipeLiquidAmount :: Milliliter -- ^ Amount of this liquid that has to be used.
+    { name :: String       -- ^ Name of the liquid.
+    , amount :: Milliliter -- ^ Amount of this liquid that has to be used.
     } deriving (Generic, Show)
 instance ToJSON RecipeLiquid where
     toEncoding = genericToEncoding defaultOptions
@@ -126,8 +127,8 @@ instance FromJSON RecipeLiquid
 
 -- |The calculated recipe of the desired liquid.
 data Recipe = Recipe 
-    { recipeLiquids :: [RecipeLiquid] -- ^ List of recipe liquids that have to be used.
-    , recipeSum :: Milliliter         -- ^ The sum of all the liquids' amounts in milliliters.
+    { liquids :: [RecipeLiquid] -- ^ List of recipe liquids that have to be used.
+    , sum :: Milliliter         -- ^ The sum of all the liquids' amounts in milliliters.
     } deriving (Generic, Show)
 instance ToJSON Recipe where
     toEncoding = genericToEncoding defaultOptions
@@ -136,16 +137,16 @@ instance FromJSON Recipe
 -- |Creates a flavor liquid givin a batch size and a flavor.
 flavorToFlavorLiquid :: BatchSize -> Flavor -> FlavorLiquid
 flavorToFlavorLiquid batchSize flavor = FlavorLiquid Liquid
-    { liquidName = flavorName flavor
-    , liquidAmount = Just amount
-    , liquidRatio = ratio
-    , liquidNicotine = 0
+    { name = (name :: Flavor -> String) flavor
+    , amount = Just amount
+    , ratio = ratio
+    , nicotine = 0
     }
     where
-        amount = (batchSize / 100 * (fromIntegral $ flavorPercentage flavor))
+        amount = (batchSize / 100 * (fromIntegral $ percentage flavor))
         ratio = LiquidRatio
-            { liquidRatioPg = if flavorIsVg flavor then 0 else 100
-            , liquidRatioVg = if flavorIsVg flavor then 100 else 0
+            { pg = if isVg flavor then 0 else 100
+            , vg = if isVg flavor then 100 else 0
             }
 
 -- |Given the batch size and a list of flavors it returns a list of flavor liquids.
@@ -155,14 +156,14 @@ flavorsToFlavorLiquids batchSize = map (flavorToFlavorLiquid batchSize)
 -- |Calculates a sub-liquid given a liquid ratio and an amount in milliliters.
 calcSubLiquid :: LiquidRatio -> Milliliter -> SubLiquid
 calcSubLiquid lr la = SubLiquid
-    { pgAmount = pg
-    , vgAmount = vg
+    { pgAmount = cPg
+    , vgAmount = cVg
     }
     where
-        pgPercent = fromIntegral $ liquidRatioPg lr
-        vgPercent = fromIntegral $ liquidRatioVg lr
-        pg = la / 100 * pgPercent
-        vg = la / 100 * vgPercent
+        pgPercent = fromIntegral $ pg lr
+        vgPercent = fromIntegral $ vg lr
+        cPg = la / 100 * pgPercent
+        cVg = la / 100 * vgPercent
 
 -- |Sums up the amounts of a list of sub-liquids.
 sumSubLiquids :: [SubLiquid] -> SubLiquid
@@ -170,27 +171,27 @@ sumSubLiquids = foldr (\(SubLiquid a1 a2) (SubLiquid b1 b2) -> (SubLiquid (a1+b1
 
 -- |Calculates the sub-liquid of the target liquid.
 calcTargetSubLiquid :: BatchSize -> TargetLiquid -> SubLiquid
-calcTargetSubLiquid batchSize (TargetLiquid targetLiquid) = calcSubLiquid (liquidRatio targetLiquid) batchSize
+calcTargetSubLiquid batchSize (TargetLiquid targetLiquid) = calcSubLiquid (ratio targetLiquid) batchSize
 
 -- |Calculates the sub-liquid of the base liquid.
 calcBaseSubLiquid :: BatchSize -> TargetLiquid -> BaseLiquid -> SubLiquid
-calcBaseSubLiquid batchSize (TargetLiquid targetLiquid) (BaseLiquid baseLiquid) = calcSubLiquid (liquidRatio baseLiquid) baseAmount
+calcBaseSubLiquid batchSize (TargetLiquid targetLiquid) (BaseLiquid baseLiquid) = calcSubLiquid (ratio baseLiquid) baseAmount
     where
-        baseAmount = batchSize / (liquidNicotine baseLiquid) * (liquidNicotine targetLiquid)
+        baseAmount = batchSize / (nicotine baseLiquid) * (nicotine targetLiquid)
 
 -- |Calculates the sub-liquid of a flavor liquid and returns them in a tuple.
 calcFlavorSubLiquid :: BatchSize -> [FlavorLiquid] -> [(FlavorLiquid, SubLiquid)]
-calcFlavorSubLiquid batchSize = map (\(FlavorLiquid f) -> (FlavorLiquid f, calcSubLiquid (liquidRatio f) (safeLiquidAmount f)))
+calcFlavorSubLiquid batchSize = map (\(FlavorLiquid f) -> (FlavorLiquid f, calcSubLiquid (ratio f) (safeLiquidAmount f)))
     where
-        safeLiquidAmount f = case liquidAmount f of
+        safeLiquidAmount f = case (amount :: Liquid -> Maybe Milliliter) f of
             Just x  -> x
             Nothing -> 0
 
 -- |Converts a flavor liquid to a recipe liquid.
 flavorLiquidToRecipeLiquid :: FlavorLiquid -> SubLiquid -> RecipeLiquid
 flavorLiquidToRecipeLiquid (FlavorLiquid flavorLiquid) (SubLiquid pgAmount vgAmount) = RecipeLiquid
-    { recipeLiquidName = liquidName flavorLiquid
-    , recipeLiquidAmount = pgAmount + vgAmount
+    { name = (name :: Liquid -> String) flavorLiquid
+    , amount = pgAmount + vgAmount
     }
 
 -- |Creates recipe liquids given a list of flavor liquid and their corresponding sub-liquid.
@@ -202,20 +203,20 @@ createResultFlavors xs = map (\(flavor, amounts) -> flavorLiquidToRecipeLiquid f
 calc :: InputData -> Recipe
 calc inputData = result
     where
-        batchSize = inputDataBatchSize inputData
-        baseLiquid = inputDataBaseLiquid inputData
-        flavors = inputDataFlavors inputData
-        targetLiquid = inputDataTargetLiquid inputData
+        bs = batchSize inputData
+        bl = baseLiquid inputData
+        fs = flavors inputData
+        tl = targetLiquid inputData
 
         -- calculate target pg/vg
-        (SubLiquid targetPg targetVg) = calcTargetSubLiquid batchSize targetLiquid
+        (SubLiquid targetPg targetVg) = calcTargetSubLiquid bs tl
         
         -- calculate base pg/vg
-        (SubLiquid basePg baseVg) = calcBaseSubLiquid batchSize targetLiquid baseLiquid
+        (SubLiquid basePg baseVg) = calcBaseSubLiquid bs tl bl
         
         -- calculate the pg/vg amounts for the flavors
-        flavorLiquids = flavorsToFlavorLiquids batchSize flavors
-        calculatedFlavors = calcFlavorSubLiquid batchSize flavorLiquids
+        fls = flavorsToFlavorLiquids bs fs
+        calculatedFlavors = calcFlavorSubLiquid bs fls
         
 
         (SubLiquid flavorPg flavorVg) = sumSubLiquids $ map snd calculatedFlavors
@@ -224,26 +225,26 @@ calc inputData = result
         (SubLiquid addPg addVg) = SubLiquid (targetPg - basePg - flavorPg) (targetVg - baseVg - flavorVg)
 
         -- build recipe
-        (BaseLiquid bl) = baseLiquid
-        blPg = liquidRatioPg $ liquidRatio bl
-        blVg = liquidRatioVg $ liquidRatio bl
+        (BaseLiquid bll) = bl
+        blPg = pg $ ratio bll
+        blVg = vg $ ratio bll
         resultBase = RecipeLiquid
-            { recipeLiquidName = "Nicotine base (" ++ (show blVg) ++ " VG / " ++  (show blPg) ++ " PG)"
-            , recipeLiquidAmount = basePg + baseVg
+            { name = "Nicotine base (" ++ (show blVg) ++ " VG / " ++  (show blPg) ++ " PG)"
+            , amount = basePg + baseVg
             }
         resultFlavors = createResultFlavors calculatedFlavors
         resultPg = RecipeLiquid
-            { recipeLiquidName = "PG"
-            , recipeLiquidAmount = addPg
+            { name = "PG"
+            , amount = addPg
             }
         resultVg = RecipeLiquid
-            { recipeLiquidName = "VG"
-            , recipeLiquidAmount = addVg
+            { name = "VG"
+            , amount = addVg
             }
 
         resultLiquids = [resultBase] ++ resultFlavors ++ [resultPg] ++ [resultVg]
 
         result = Recipe
-            { recipeLiquids = resultLiquids
-            , recipeSum = sum $ map recipeLiquidAmount resultLiquids
+            { liquids = resultLiquids
+            , sum = Prelude.sum $ map (amount :: RecipeLiquid -> Milliliter) resultLiquids
             }

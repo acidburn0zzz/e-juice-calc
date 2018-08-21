@@ -10,7 +10,7 @@ import qualified Data.Text as T
 import GHC.Generics
 
 data ConfigurationData = ConfigurationData
-    { configurationLastFile :: Maybe FilePath
+    { lastFile :: Maybe FilePath
     } deriving (Generic, Show)
 instance ToJSON ConfigurationData where
     toEncoding = genericToEncoding defaultOptions
@@ -18,16 +18,16 @@ instance FromJSON ConfigurationData
 
 -- |Gets the last file which has been used.
 getLastFile :: ConfigurationData -> Maybe FilePath
-getLastFile = configurationLastFile
+getLastFile = lastFile
 
 -- |Sets the last file which has been used.
 setLastFile :: ConfigurationData -> Maybe FilePath -> ConfigurationData
-setLastFile configuration filePath = configuration { configurationLastFile = filePath }
+setLastFile configuration filePath = configuration { lastFile = filePath }
 
 -- |Loads a configuration and returns the default if unsuccessful.
 load :: FilePath -> IO ConfigurationData
 load filePath = do
-    let defaultConfig = ConfigurationData { configurationLastFile = Nothing }
+    let defaultConfig = ConfigurationData { lastFile = Nothing }
     configurationData <- try (readFile filePath) :: IO (Either SomeException String)
     pure $ case configurationData of
         Left _ -> defaultConfig

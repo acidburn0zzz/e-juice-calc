@@ -22,6 +22,7 @@ ApplicationWindow {
 
     property var titleOriginal: 'E-Juice-Calc'
     property var titleExtra: ''
+    property var recalculateOnChange: true
 
     menuBar: MenuBar {
         Menu {
@@ -81,7 +82,7 @@ ApplicationWindow {
                     suffix: ' ml'
                     horizontalAlignment: Qt.AlignRight
                     Layout.fillWidth: true
-                    onValueChanged: { EJuiceCalc.calculate() }
+                    onValueChanged: { if(recalculateOnChange) { EJuiceCalc.calculate(); } }
                 }
             }
         }
@@ -132,7 +133,7 @@ ApplicationWindow {
                         value: 20
                         horizontalAlignment: Qt.AlignRight
                         Layout.fillWidth: true
-                        onValueChanged: EJuiceCalc.calculate()
+                        onValueChanged: { if(recalculateOnChange) { EJuiceCalc.calculate(); } }
                     }
                     GridLayout {
                         columns: 2
@@ -146,7 +147,11 @@ ApplicationWindow {
                             suffix: ' %'
                             value: 0
                             horizontalAlignment: Qt.AlignRight
-                            onValueChanged: { baseRatioPg.value = 100 - this.value; EJuiceCalc.calculate(); }
+                            onValueChanged: {
+                                baseRatioPg.value = 100 - this.value;
+                                if(recalculateOnChange)
+                                    EJuiceCalc.calculate();
+                            }
                         }
                         SpinBox {
                             id: baseRatioPg
@@ -155,7 +160,11 @@ ApplicationWindow {
                             suffix: ' %'
                             value: 0
                             horizontalAlignment: Qt.AlignRight
-                            onValueChanged: { baseRatioVg.value = 100 - this.value; EJuiceCalc.calculate(); }
+                            onValueChanged: {
+                                baseRatioVg.value = 100 - this.value;
+                                if(recalculateOnChange)
+                                    EJuiceCalc.calculate();
+                            }
                         }
                     }
                 }
@@ -174,7 +183,7 @@ ApplicationWindow {
                         value: 3
                         horizontalAlignment: Qt.AlignRight
                         Layout.fillWidth: true
-                        onValueChanged: EJuiceCalc.calculate()
+                        onValueChanged: { if(recalculateOnChange) { EJuiceCalc.calculate(); } }
                     }
                     GridLayout {
                         columns: 2
@@ -188,7 +197,11 @@ ApplicationWindow {
                             suffix: ' %'
                             value: 100-targetRatioPg.value
                             horizontalAlignment: Qt.AlignRight
-                            onValueChanged: { targetRatioPg.value = 100 - this.value; EJuiceCalc.calculate(); }
+                            onValueChanged: {
+                                targetRatioPg.value = 100 - this.value;
+                                if(recalculateOnChange)
+                                    EJuiceCalc.calculate();
+                            }
                         }
                         SpinBox {
                             id: targetRatioPg
@@ -197,7 +210,11 @@ ApplicationWindow {
                             suffix: ' %'
                             value: 100-targetRatioVg.value
                             horizontalAlignment: Qt.AlignRight
-                            onValueChanged: { targetRatioVg.value = 100 - this.value; EJuiceCalc.calculate(); }
+                            onValueChanged: {
+                                targetRatioVg.value = 100 - this.value;
+                                if(recalculateOnChange)
+                                    EJuiceCalc.calculate();
+                            }
                         }
                     }
                 }

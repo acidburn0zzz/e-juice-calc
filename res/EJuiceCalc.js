@@ -7,7 +7,6 @@ function post(url, data, resolve, reject) { xhr(url, 'POST', data, resolve, reje
 function xhr(urlPath, method, data, resolve, reject) {
     var xhr = new XMLHttpRequest();
     xhr.open(method, baseUrl + urlPath, true);
-    console.log(baseUrl + urlPath);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     xhr.onreadystatechange = function() {
         if(xhr.readyState === XMLHttpRequest.DONE) {
@@ -59,9 +58,9 @@ function getFlavors() {
     for(var i = 0; i<flavorModel.count; i++) {
         var row = flavorModel.get(i);
         result[result.length] = {
-            flavorName: row.name,
-            flavorPercentage: row.percentage,
-            flavorIsVg: row.vg === 'Yes' ? true : false
+            name: row.name,
+            percentage: row.percentage,
+            isVg: row.vg === 'Yes' ? true : false
         };
     }
     return result;
@@ -71,9 +70,9 @@ function setFlavors(flavors) {
     for(var i = 0; i<flavors.length; i++) {
         var flavor = flavors[i]
         flavorModel.append({
-            name: flavor.flavorName,
-            percentage: flavor.flavorPercentage,
-            vg: flavor.flavorIsVg === true ? 'Yes' : 'No'
+            name: flavor.name,
+            percentage: flavor.percentage,
+            vg: flavor.isVg === true ? 'Yes' : 'No'
         })
     }
 }
@@ -97,50 +96,50 @@ function setTargetNicotineRatio(pg, vg) {
 }
 function getInputData() {
     return {
-        inputDataBatchSize: getBatchSize(),
-        inputDataFlavors: getFlavors(),
-        inputDataBaseLiquid: {
-            liquidRatio: {
-                liquidRatioPg: getBaseNicotineRatioPg(),
-                liquidRatioVg: getBaseNicotineRatioVg()
+        batchSize: getBatchSize(),
+        flavors: getFlavors(),
+        baseLiquid: {
+            ratio: {
+                pg: getBaseNicotineRatioPg(),
+                vg: getBaseNicotineRatioVg()
             },
-            liquidAmount: null,
-            liquidName: getBaseNicotineName(),
-            liquidNicotine: getBaseNicotineStrength()
+            amount: null,
+            name: getBaseNicotineName(),
+            nicotine: getBaseNicotineStrength()
         },
-        inputDataTargetLiquid: {
-            liquidRatio: {
-                liquidRatioPg: getTargetNicotineRatioPg(),
-                liquidRatioVg: getTargetNicotineRatioVg()
+        targetLiquid: {
+            ratio: {
+                pg: getTargetNicotineRatioPg(),
+                vg: getTargetNicotineRatioVg()
             },
-            liquidAmount: null,
-            liquidName: getTargetNicotineName(),
-            liquidNicotine: getTargetNicotineStrength()
+            amount: null,
+            name: getTargetNicotineName(),
+            nicotine: getTargetNicotineStrength()
         }
     };
 }
 function setInputData(obj) {
-    setBatchSize(obj.inputDataBatchSize)
-    setFlavors(obj.inputDataFlavors)
-    setBaseNicotineStrength(obj.inputDataBaseLiquid.liquidNicotine)
-    setBaseNicotineRatio(obj.inputDataBaseLiquid.liquidRatio.liquidRatioPg, obj.inputDataBaseLiquid.liquidRatio.liquidRatioVg)
-    setTargetNicotineStrength(obj.inputDataTargetLiquid.liquidNicotine)
-    setTargetNicotineRatio(obj.inputDataTargetLiquid.liquidRatio.liquidRatioPg, obj.inputDataTargetLiquid.liquidRatio.liquidRatioVg)
+    setBatchSize(obj.batchSize)
+    setFlavors(obj.flavors)
+    setBaseNicotineStrength(obj.baseLiquid.nicotine)
+    setBaseNicotineRatio(obj.baseLiquid.ratio.pg, obj.baseLiquid.ratio.vg)
+    setTargetNicotineStrength(obj.targetLiquid.nicotine)
+    setTargetNicotineRatio(obj.targetLiquid.ratio.pg, obj.targetLiquid.ratio.vg)
 }
 function setRecipe(recipe) {
     resultModel.clear();
     if(recipe !== null) {
-        var liquids = recipe.recipeLiquids;
+        var liquids = recipe.liquids;
         for(var i = 0; i<liquids.length; i++) {
             var liquid = liquids[i];
             resultModel.append({
-                name: liquid.recipeLiquidName,
-                ml: liquid.recipeLiquidAmount.toFixed(2)
+                name: liquid.name,
+                ml: liquid.amount.toFixed(2)
             });
         }
         resultModel.append({
             name: 'Sum',
-            ml: recipe.recipeSum.toFixed(2)
+            ml: recipe.sum.toFixed(2)
         });
     }
 }
@@ -151,7 +150,9 @@ function initialize(host, port) {
     baseUrl = 'http://' + host + ':' + port
     haskellInit(function(inputData) {
         // set gui components based on input data
+        main.recalculateOnChange = false;
         setInputData(inputData);
+        main.recalculateOnChange = true;
         haskellFilePath(function(filePath) {
             if(filePath != null) {
                 titleExtra = filePath;
@@ -170,7 +171,7 @@ function calculate() {
         setRecipe(recipe);
     }, function() {
         // error
-    })
+    });
 }
 
 // GUI functions
@@ -182,7 +183,9 @@ function menuFileOpen() {
         var filePath = urlToPath(dialog.fileUrl.toString());
         haskellOpen(filePath, function(inputData) {
             if(inputData != null) {
+                main.recalculateOnChange = false;
                 setInputData(inputData);
+                main.recalculateOnChange = true;
                 main.titleExtra = filePath;
                 calculate();
             }
