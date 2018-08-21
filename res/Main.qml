@@ -14,7 +14,10 @@ ApplicationWindow {
     height: 250
 
     Component.onCompleted: {
-        EJuiceCalc.initialize(qmllb.host, qmllb.port);
+        EJuiceCalc.initialize(qmllb.getHost(), qmllb.getPort());
+    }
+    onClosing: {
+        EJuiceCalc.menuFileQuit();
     }
 
     property var titleOriginal: 'E-Juice-Calc'

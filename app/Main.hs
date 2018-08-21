@@ -171,7 +171,7 @@ haskellSave state requestBody = do
 haskellGetFilePath :: IORef State.StateData -> IO Response
 haskellGetFilePath state = do
     filePath <- State.getFilePath state
-    pure $ responseLBS status200 defaultHeaders (encode filePath)
+    pure $ Ajax.toResponse $ Ajax.makeSuccess (decode $ encode filePath) -- TODO: FIXME: encode...decode
 
 -- calculate the recipe
 haskellCalculate :: BL.ByteString -> IO Response

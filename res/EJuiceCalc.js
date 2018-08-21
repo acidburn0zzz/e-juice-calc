@@ -7,13 +7,19 @@ function post(url, data, resolve, reject) { xhr(url, 'POST', data, resolve, reje
 function xhr(urlPath, method, data, resolve, reject) {
     var xhr = new XMLHttpRequest();
     xhr.open(method, baseUrl + urlPath, true);
+    console.log(baseUrl + urlPath);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     xhr.onreadystatechange = function() {
         if(xhr.readyState === XMLHttpRequest.DONE) {
             if(xhr.status === 200) {
-                resolve(JSON.parse(xhr.responseText));
+                var obj = JSON.parse(xhr.responseText);
+                if(obj.success) {
+                    resolve(obj.content);
+                } else {
+                    reject(obj.message);
+                }
             } else {
-                reject("Error");
+                reject("Network error.");
             }
         }
     }
@@ -37,7 +43,7 @@ function urlToPath(urlString) {
 
 // Interface to Haskell.
 function haskellInit(resolve, reject) { get('/init', resolve, reject); }
-function haskellOpen(filePath, resolve, reject) { post('/open', { filePath, resolve, reject); }
+function haskellOpen(filePath, resolve, reject) { post('/open', { filePath: filePath }, resolve, reject); }
 function haskellSave(filePath, inputData, resolve, reject) { post('/save', { filePath: filePath, inputData: inputData }, resolve, reject); }
 function haskellFilePath(resolve, reject) { get('/filepath', resolve, resolve); }
 function haskellCalculate(inputData, resolve, reject) { post('/calculate', inputData, resolve, reject); }
@@ -85,13 +91,13 @@ function getTargetNicotineStrength() { return targetNicotineStrength.value; }
 function setTargetNicotineStrength(value) { targetNicotineStrength.value = value; }
 function getTargetNicotineRatioPg() { return targetRatioPg.value; }
 function getTargetNicotineRatioVg() { return targetRatioVg.value; }
-function getTargetNicotineRatio(pg, vg) {
+function setTargetNicotineRatio(pg, vg) {
     targetRatioPg.value = pg
     targetRatioVg.value = vg
 }
 function getInputData() {
     return {
-        inputDataBatchSize: main.getBatchSize(),
+        inputDataBatchSize: getBatchSize(),
         inputDataFlavors: getFlavors(),
         inputDataBaseLiquid: {
             liquidRatio: {
@@ -145,13 +151,15 @@ function initialize(host, port) {
     baseUrl = 'http://' + host + ':' + port
     haskellInit(function(inputData) {
         // set gui components based on input data
-        updateInputData(inputData);
-        var filePath = JSON.parse(haskellGetFilePath())
-        if(filePath != null) {
-            titleExtra = filePath
-        }
-        // calculate
-
+        setInputData(inputData);
+        haskellFilePath(function(filePath) {
+            if(filePath != null) {
+                titleExtra = filePath;
+            }
+            calculate();
+        }, function() {
+            // error
+        })
     }, function() {
         // Error
     })
@@ -165,14 +173,6 @@ function calculate() {
     })
 }
 
-
-
-
-
-
-
-
-
 // GUI functions
 // Menu
 function menuFileOpen() {
@@ -182,7 +182,7 @@ function menuFileOpen() {
         var filePath = urlToPath(dialog.fileUrl.toString());
         haskellOpen(filePath, function(inputData) {
             if(inputData != null) {
-                updateInputData(inputData);
+                setInputData(inputData);
                 main.titleExtra = filePath;
                 calculate();
             }
@@ -223,7 +223,7 @@ function menuFileSaveAs(resolve, reject) {
     var component = Qt.createComponent("SaveDialog.qml")
     var dialog = component.createObject(main)
     dialog.acceptedCallback = function() {
-        filePath = EJuiceCalc.urlToPath(dialog.fileUrl.toString())
+        var filePath = EJuiceCalc.urlToPath(dialog.fileUrl.toString())
         menuFileSaveHelper(filePath, function() {
             if(resolve != null) {
                 resolve();
