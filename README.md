@@ -24,7 +24,9 @@ You will also have to build qml-language-bridge, which resides in the subdirecto
 For build instructions visit the <a href="https://gitlab.com/rszibele/qml-language-bridge">qml-language-bridge repository</a>.
 
 Once both e-juice-calc and qml-language-bridge have been installed, copy both the binaries
-and the res folder into a new folder called deploy.
+and the res folder into a new folder called deploy. You can now run the executable `ejuicecalc`.
 
-As of 21.08.2018 e-juice-calc only supports loading the QML resources from the path `res/` relative to the executable `ejuicecalc`. This will 
-likely change in future versions.
+On GNU/Linux e-juice-calc searches for the Main.qml file in the following locations, ordered by preference:
+* /usr/share/e-juice-calc/res/Main.qml
+* /usr/local/share/e-juice-calc/res/Main.qml
+* res/Main.qml

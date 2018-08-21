@@ -26,7 +26,6 @@ dependencies:
 - bytestring
 - string-conversions
 - aeson
-- aeson-pretty
 - directory
 - http-types
 - wai

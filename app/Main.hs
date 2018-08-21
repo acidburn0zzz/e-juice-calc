@@ -17,6 +17,7 @@ import Data.Text (Text)
 import Data.String.Conversions
 import Data.IORef
 import System.Directory
+import System.Info
 import System.Process
 import System.Random
 import Network.Wai.Handler.Warp (run)
@@ -47,7 +48,22 @@ loadInputData state configuration = do
                         Nothing -> pure $ defaultInputData
         Nothing -> pure $ defaultInputData
 
--- main entry point
+-- |Returns a list of files to search for.
+initialDocumentSearch :: String -> [String]
+initialDocumentSearch "linux"   = ["/usr/share/e-juice-calc/res/Main.qml", "/usr/local/share/e-juice-calc/res/Main.qml", "res/Main.qml"]
+initialDocumentSearch _         = ["res/Main.qml"]
+
+-- |Given a list of file paths, determine which one is usable.
+initialDocument :: [String] -> IO (Maybe String)
+initialDocument [] = pure Nothing
+initialDocument (x:xs) = do
+    exists <- doesFileExist x
+    case exists of
+        True  -> pure $ Just x
+        False -> initialDocument xs
+        
+
+-- |Main entry point
 main :: IO ()
 main = do
     -- create the state.
@@ -65,30 +81,30 @@ main = do
     -- load the inputdata given the configuration.
     inputData <- loadInputData state configuration
 
-    -- our main qml file to load.
-    let initialDocument = "res/Main.qml"
-
     -- grab a random value.
     randomValue <- randomIO :: IO Int
     let port = (randomValue `mod` 50000) + 10000 -- range: 10000-60000
 
-    -- launch process with appropriate arguments.
-    bracket
-        -- create our process.
-        (spawnProcess "qmllb" [show port, initialDocument])
-        -- kill the process.
-        terminateProcess
-        -- run our webserver and wait for shutdown signal.
-        (\_ -> do
-            shutdownSignal <- State.getShutdown state
-            race_ (takeMVar shutdownSignal) (run port (app inputData state)))
-
-    -- save the configuration.
-    lastFilePath <- State.getFilePath state
-    fileSaved <- Configuration.save (Configuration.setLastFile configuration lastFilePath) configFilePath
-    -- TODO: check if not saved and handle error
-    
-    pure ()
+    -- our main qml file to load.
+    fp <- initialDocument $ initialDocumentSearch os
+    case fp of
+        Nothing       -> pure ()
+        Just filePath -> do
+            -- launch process with appropriate arguments.
+            bracket
+                -- create our process.
+                (spawnProcess "qmllb" [show port, filePath])
+                -- kill the process.
+                terminateProcess
+                -- run our webserver and wait for shutdown signal.
+                (\_ -> do
+                    shutdownSignal <- State.getShutdown state
+                    race_ (takeMVar shutdownSignal) (run port (app inputData state)))
+            -- save the configuration.
+            lastFilePath <- State.getFilePath state
+            fileSaved <- Configuration.save (Configuration.setLastFile configuration lastFilePath) configFilePath
+            -- TODO: check if not saved and handle error
+            pure ()
 
 app :: InputData -> IORef State.StateData -> Application
 app initInputData state request respond = do
