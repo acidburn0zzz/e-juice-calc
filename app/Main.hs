@@ -1,16 +1,33 @@
+{-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main where
 
+import Control.Concurrent.Async
+import Control.Concurrent.MVar
 import Control.Exception
+import Control.Monad
+import Control.Monad.IO.Class
+import Control.Monad.Trans.Except
 import Data.Aeson
+import qualified Data.ByteString.Lazy as BL
+import qualified Data.ByteString.Lazy.Char8 as BL8
+import Data.Data (Data, Typeable)
 import Data.Text (Text)
 import Data.String.Conversions
 import Data.IORef
-import Graphics.QML
 import System.Directory
+import System.Process
+import System.Random
+import Network.Wai.Handler.Warp (run)
+import Network.HTTP.Types
+import Network.Wai
 
 import qualified Configuration as Configuration
 import EJuiceCalc
 import qualified State as State
+import qualified Ajax as Ajax
+import qualified JsonRequest as JsonRequest
 
 -- load the inputdata given the configuration
 loadInputData :: IORef State.StateData -> Configuration.ConfigurationData -> IO InputData
@@ -33,95 +50,146 @@ loadInputData state configuration = do
 -- main entry point
 main :: IO ()
 main = do
-    -- create the state
+    -- create the state.
     state <- State.create
 
-    -- create config directory if it doesn't exist
+    -- create config directory if it doesn't exist.
     configDirectory <- getXdgDirectory XdgConfig "e-juice-calc"
     createDirectoryIfMissing True configDirectory
 
     let configFilePath = configDirectory ++ "/config.json"
 
-    -- try to load the configuration
+    -- try to load the configuration.
     configuration <- Configuration.load configFilePath
 
-    -- load the inputdata given the configuration
+    -- load the inputdata given the configuration.
     inputData <- loadInputData state configuration
 
-    -- create our class with the haskell functions
-    mainClass <- newClass [
-        defMethod' "haskellInit" (\_ -> pure $ cs $ encode inputData :: IO Text),
-        defMethod' "haskellOpen" (\_ filePath -> haskellOpen state filePath),
-        defMethod' "haskellSave" (\_ filePath inputStr -> haskellSave state filePath inputStr),
-        defMethod' "haskellGetFilePath" (\_ -> haskellGetFilePath state),
-        defMethod' "haskellCalc" (\_ input -> haskellCalc input),
-        defMethod' "haskellGetVersion" (\_ -> haskellGetVersion)]
-    
-    -- create a new instance of our class
-    ctx <- newObject mainClass ()
-    
-    -- run the GUI
-    runEngineLoop defaultEngineConfig {
-          initialDocument = fileDocument "res/Main.qml"
-        , contextObject = Just $ anyObjRef ctx
-    }
+    -- our main qml file to load.
+    let initialDocument = "res/Main.qml"
 
-    -- save the configuration
+    -- grab a random value.
+    randomValue <- randomIO :: IO Int
+    let port = (randomValue `mod` 50000) + 10000 -- range: 10000-60000
+
+    -- launch process with appropriate arguments.
+    bracket
+        -- create our process.
+        (spawnProcess "qmllb" [show port, initialDocument])
+        -- kill the process.
+        terminateProcess
+        -- run our webserver and wait for shutdown signal.
+        (\_ -> do
+            shutdownSignal <- State.getShutdown state
+            race_ (takeMVar shutdownSignal) (run port (app inputData state)))
+
+    -- save the configuration.
     lastFilePath <- State.getFilePath state
     fileSaved <- Configuration.save (Configuration.setLastFile configuration lastFilePath) configFilePath
     -- TODO: check if not saved and handle error
     
     pure ()
 
+app :: InputData -> IORef State.StateData -> Application
+app initInputData state request respond = do
+    reqBody <- strictRequestBody request
+    response <- case rawPathInfo request of
+        "/init"      -> haskellInit initInputData
+        "/open"      -> haskellOpen state reqBody
+        "/save"      -> haskellSave state reqBody
+        "/filepath"  -> haskellGetFilePath state
+        "/calculate" -> haskellCalculate reqBody
+        "/version"   -> haskellVersion
+        "/exit"      -> haskellExit state
+        _            -> pure $ Ajax.toResponse $ Ajax.makeError (Just "Not Found.")
+    respond response
+
+-- the default headers
+defaultHeaders = [("Content-Type", "application/json")]
+
+-- helper function
+tryDecode :: FromJSON a => String -> ExceptT String IO a
+tryDecode str = do
+    let result = decode (cs str)
+    case result of
+        Nothing -> throwE "Failed to decode the request body."
+        Just x  -> ExceptT (pure (Right x))
+
+
+haskellInit :: InputData -> IO Response
+haskellInit inputData = pure $ Ajax.toResponse $ Ajax.makeSuccess (decode $ encode inputData) -- TODO: FIXME: encode...decode
+
 -- read file and validate
-haskellOpen :: IORef State.StateData -> Text -> IO (Maybe Text)
-haskellOpen state filePath = do
-    -- the file should exists because it has either
-    -- been loaded from the configuration or the user selected it in a dialog
-    result <- try (readFile (cs filePath)) :: IO (Either SomeException String)
-    let inputStr = case result of
-                   Left _    -> encode (Nothing :: Maybe Text)
-                   Right str -> cs str
-    -- validate json and update state
-    let inputData = decode (cs inputStr) :: Maybe InputData
-    case inputData of
-        Just x  -> do
+haskellOpen :: IORef State.StateData -> BL.ByteString -> IO Response
+haskellOpen state requestBody = do
+    result <- runExceptT $ do 
+        reqObj <- tryDecode (cs requestBody) :: ExceptT String IO JsonRequest.Open
+        let filePath = JsonRequest.getOpenFilePath reqObj
+        fileData <- tryReadFile filePath
+        inputData <- tryDecode fileData :: ExceptT String IO InputData
+        ExceptT (pure $ Right (filePath, inputData))
+    case result of
+        Left message -> pure $ Ajax.toResponse $ Ajax.makeError (Just message)
+        Right (filePath, inputData)      -> do
             State.setFilePath state (cs filePath)
-            pure $ Just $ cs inputStr
-        Nothing -> pure Nothing
+            pure $ Ajax.toResponse $ Ajax.makeSuccess (decode $ encode inputData) -- TODO: FIXME: encode...decode
+    where
+        parseRequest :: BL.ByteString -> ExceptT String IO String
+        parseRequest requestBody = do
+            let filePath = decode requestBody :: Maybe String
+            case filePath of
+                Just x -> pure x
+                _      -> throwE "Failed to parse request body." 
+        tryReadFile :: String -> ExceptT String IO String
+        tryReadFile filePath = join $ liftIO $ try (readFile (cs filePath)) >>= convReadException
+            where
+                convReadException :: Either SomeException String -> IO (ExceptT String IO String)
+                convReadException x = pure $ case x of
+                    Left _ -> throwE "Failed to read file."
+                    Right xx -> ExceptT (pure (Right xx))
 
 -- validate and save to file
-haskellSave :: IORef State.StateData -> Text -> Text -> IO Bool
-haskellSave state filePath inputStr = do
-    -- validate json
-    let inputData = decode (cs $ inputStr) :: Maybe InputData
-    case inputData of
-        Just x -> do
-            -- valid - try to write the file
-            result <- try (writeFile (cs filePath) (cs inputStr)) :: IO (Either SomeException ())
-            case result of
-                Left _ -> pure False
-                Right _ -> do
-                    State.setFilePath state (cs filePath)
-                    pure True
-        Nothing -> pure False
+-- state, filepath, inputstr
+haskellSave :: IORef State.StateData -> BL.ByteString -> IO Response
+haskellSave state requestBody = do
+    result <- runExceptT $ do
+        reqObj <- tryDecode (cs requestBody) :: ExceptT String IO JsonRequest.Save
+        trySaveFile (JsonRequest.getSaveFilePath reqObj) (cs $ encode $ JsonRequest.getSaveInputData reqObj)
+    pure $ case result of
+        Left  msg -> Ajax.toResponse $ Ajax.makeError (Just msg)
+        Right _   -> Ajax.toResponse $ Ajax.makeSuccess Nothing
+    where
+        trySaveFile :: String -> String -> ExceptT String IO ()
+        trySaveFile filePath str = join $ liftIO $ try (writeFile filePath str) >>= convWriteException
+            where
+                convWriteException :: Either SomeException () -> IO (ExceptT String IO ())
+                convWriteException x = pure $ case x of
+                    Left _ -> throwE "Failed to write to file."
+                    Right xx -> ExceptT (pure (Right xx))
 
 -- get the filepath of the last opened/saved file
-haskellGetFilePath :: IORef State.StateData -> IO (Maybe Text)
+haskellGetFilePath :: IORef State.StateData -> IO Response
 haskellGetFilePath state = do
     filePath <- State.getFilePath state
-    pure $ case filePath of
-        Just fp -> Just $ cs $ encode fp
-        Nothing -> Nothing
+    pure $ responseLBS status200 defaultHeaders (encode filePath)
 
 -- calculate the recipe
-haskellCalc :: Text -> IO Text
-haskellCalc input = do
-    let inputData = decode (cs input) :: Maybe InputData
-    pure $ case inputData of
-        Just x  -> cs $ encode (calc x)
-        Nothing -> cs "null"
+haskellCalculate :: BL.ByteString -> IO Response
+haskellCalculate requestBody = do
+    result <- runExceptT $ (tryDecode $ cs requestBody :: ExceptT String IO InputData)
+    pure $ case result of
+        Left  msg       -> Ajax.toResponse $ Ajax.makeError (Just msg)
+        Right inputData -> Ajax.toResponse $ Ajax.makeSuccess (decode $ (encode $ calc inputData)) -- TODO: FIXME: encode...decode
 
 -- get the version of the program
-haskellGetVersion :: IO Text
-haskellGetVersion = pure $ cs version
+haskellVersion :: IO Response
+haskellVersion = pure $ Ajax.toResponse $ Ajax.makeSuccess (decode $ encode version) -- TODO: FIXME: encode...decode
+
+data Shutdown = Shutdown deriving (Data, Typeable, Show)
+instance Exception Shutdown
+
+-- exit by setting the shutdown signal
+haskellExit :: IORef State.StateData -> IO Response
+haskellExit state = do
+    State.setShutdown state
+    pure $ Ajax.toResponse $ Ajax.makeSuccess Nothing

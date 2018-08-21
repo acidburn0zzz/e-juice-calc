@@ -1,18 +1,33 @@
 module State where
 
+import Control.Concurrent.MVar
 import Data.IORef
 
 -- |Stores stateful data.
 data StateData = StateData
-    { stateFilePath :: Maybe FilePath -- ^ The FilePath of the opened/saved file.
+    { stateShutdown :: MVar Bool
+    , stateFilePath :: Maybe FilePath -- ^ The FilePath of the opened/saved file.
     }
 
 -- |Creates a new IORef for StateData.
 create :: IO (IORef StateData)
-create = newIORef (StateData
-    { stateFilePath = Nothing
-    })
+create = do
+    shutdown <- newEmptyMVar
+    newIORef (StateData
+        { stateShutdown = shutdown
+        , stateFilePath = Nothing
+        })
 
+setShutdown :: IORef StateData -> IO ()
+setShutdown state = do
+    s <- readIORef state
+    putMVar (stateShutdown s) True
+
+getShutdown :: IORef StateData -> IO (MVar Bool)
+getShutdown state = do
+    s <- readIORef state
+    pure $ stateShutdown s 
+    
 -- |Sets the FilePath in the State.
 setFilePath :: IORef StateData -> FilePath -> IO ()
 setFilePath state filePath = do
