@@ -95,7 +95,7 @@ main = do
                 -- create our process.
                 (spawnProcess "qmllb" [show port, filePath])
                 -- kill the process.
-                terminateProcess
+                (\pid -> (try $ terminateProcess pid :: IO (Either SomeException ())) >> pure ())
                 -- run our webserver and wait for shutdown signal.
                 (\_ -> do
                     shutdownSignal <- State.getShutdown state
