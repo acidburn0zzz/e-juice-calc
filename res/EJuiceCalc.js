@@ -244,7 +244,7 @@ function menuFileSaveAs(resolve, reject) {
 }
 function menuFileQuit() {
     haskellExit(function() {
-        // TODO: success
+        Qt.quit();
     }, function() {
         // TODO: error
     })

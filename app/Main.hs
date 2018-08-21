@@ -20,7 +20,7 @@ import System.Directory
 import System.Info
 import System.Process
 import System.Random
-import Network.Wai.Handler.Warp (run)
+import Network.Wai.Handler.Warp (runSettings, defaultSettings, setPort, setOnException)
 import Network.HTTP.Types
 import Network.Wai
 
@@ -99,12 +99,16 @@ main = do
                 -- run our webserver and wait for shutdown signal.
                 (\_ -> do
                     shutdownSignal <- State.getShutdown state
-                    race_ (takeMVar shutdownSignal) (run port (app inputData state)))
+                    race_ (takeMVar shutdownSignal) (runSettings warpSettings (app inputData state)))
             -- save the configuration.
             lastFilePath <- State.getFilePath state
             fileSaved <- Configuration.save (Configuration.setLastFile configuration lastFilePath) configFilePath
             -- TODO: check if not saved and handle error
             pure ()
+            where
+                exceptionHandler :: Maybe Request -> SomeException -> IO ()
+                exceptionHandler _ _ = pure ()
+                warpSettings = setOnException exceptionHandler $ setPort port defaultSettings
 
 app :: InputData -> IORef State.StateData -> Application
 app initInputData state request respond = do
