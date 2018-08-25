@@ -1,5 +1,4 @@
 .stack-work/
-e-juice-calc.cabal
 *~
 res/*.qmlc
 res/*.jsc

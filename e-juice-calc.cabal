@@ -1,0 +1,101 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: b47184095371e3e3ce108d26c4d0155384142709639f380c13ea7a06dca96ac1
+
+name:           e-juice-calc
+version:        1.0.2
+description:    Please see the README on GitHub at <https://github.com/githubuser/e-juice-calc#readme>
+homepage:       https://github.com/githubuser/e-juice-calc#readme
+bug-reports:    https://github.com/githubuser/e-juice-calc/issues
+author:         Richard Szibele
+maintainer:     richard@szibele.com
+copyright:      2018 Richard Szibele
+license:        GPL-2
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    ChangeLog.md
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/e-juice-calc
+
+library
+  exposed-modules:
+      Ajax
+      Configuration
+      EJuiceCalc
+      JsonRequest
+      State
+  other-modules:
+      Paths_e_juice_calc
+  hs-source-dirs:
+      src
+  build-depends:
+      aeson
+    , async
+    , base >=4.7 && <5
+    , bytestring
+    , directory
+    , http-types
+    , process
+    , random
+    , string-conversions
+    , text
+    , transformers
+    , wai
+    , warp
+  default-language: Haskell2010
+
+executable ejuicecalc
+  main-is: Main.hs
+  other-modules:
+      Paths_e_juice_calc
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , async
+    , base >=4.7 && <5
+    , bytestring
+    , directory
+    , e-juice-calc
+    , http-types
+    , process
+    , random
+    , string-conversions
+    , text
+    , transformers
+    , wai
+    , warp
+  default-language: Haskell2010
+
+test-suite ejuicecalc-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_e_juice_calc
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , async
+    , base >=4.7 && <5
+    , bytestring
+    , directory
+    , e-juice-calc
+    , http-types
+    , process
+    , random
+    , string-conversions
+    , text
+    , transformers
+    , wai
+    , warp
+  default-language: Haskell2010
