@@ -1,0 +1,51 @@
+{
+    "app-id": "com.szibele.EJuiceCalc",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.11",
+    "sdk": "org.kde.Sdk",
+    "command": "ejuicecalc",
+    "finish-args": [
+        "--socket=x11"
+    ],
+    "cleanup": [
+    ],
+    "cleanup-commands": [
+    ],
+    "modules": [
+        { "name": "qml-language-bridge",
+          "only-arches": [],
+          "buildsystem": "cmake",
+          "builddir": true,
+          "build-commands": [
+            "cmake -DCMAKE_INSTALL_PREFIX=/app .",
+            "make install"
+          ],
+          "sources": [
+            {
+                "type": "archive",
+                "url": "https://gitlab.com/rszibele/qml-language-bridge/-/archive/1.0.2/qml-language-bridge-1.0.2.tar.gz",
+                "sha256": "1fd298f972fd31636e2c3eef49574018ff7356bcac024bfe419145aa93efc5a0"
+            }
+          ]
+        },
+        {
+            "name": "e-juice-calc",
+            "only-arches": [],
+            "buildsystem": "simple",
+            "builddir": true,
+            "build-commands": [
+                "ghc -threaded --make Setup",
+                "./Setup configure --prefix=/app",
+                "./Setup build",
+                "./Setup install"
+            ],
+            "sources": [
+            {
+                "type": "archive",
+                "url": "https://gitlab.com/rszibele/e-juice-calc/-/archive/master/e-juice-calc-master.tar.gz",
+                "sha256": "d0a0cbbeffd7b0cce4632c58f49d5316856ac59a1a6c9c7c1c49d952933f0186"
+            }
+            ]
+        }
+    ]
+}

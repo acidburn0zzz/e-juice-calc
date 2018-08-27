@@ -50,7 +50,11 @@ loadInputData state configuration = do
 
 -- |Returns a list of files to search for.
 initialDocumentSearch :: String -> [String]
-initialDocumentSearch "linux"   = ["/usr/share/e-juice-calc/res/Main.qml", "/usr/local/share/e-juice-calc/res/Main.qml", "res/Main.qml"]
+initialDocumentSearch "linux"   = [ "/app/share/e-juice-calc/res/Main.qml"       -- Flatpak
+                                  , "/usr/share/e-juice-calc/res/Main.qml"       -- general GNU/Linux
+                                  , "/usr/local/share/e-juice-calc/res/Main.qml" -- general GNU/Linux / BSD
+                                  , "res/Main.qml"                               -- Windows
+                                  ]
 initialDocumentSearch _         = ["res/Main.qml"]
 
 -- |Given a list of file paths, determine which one is usable.
