@@ -27,6 +27,7 @@ Once both e-juice-calc and qml-language-bridge have been installed, copy both th
 and the res folder into a new folder called deploy. You can now run the executable `ejuicecalc`.
 
 On GNU/Linux e-juice-calc searches for the Main.qml file in the following locations, ordered by preference:
+* /app/share/e-juice-calc/res/Main.qml
 * /usr/share/e-juice-calc/res/Main.qml
 * /usr/local/share/e-juice-calc/res/Main.qml
 * res/Main.qml
