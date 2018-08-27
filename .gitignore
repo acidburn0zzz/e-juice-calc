@@ -5,3 +5,5 @@ res/*.qmlc
 res/*.jsc
 qmllb*
 com.szibele.EJuiceCalc.json
+build-dir
+repo

@@ -20,6 +20,8 @@
             "cmake -DCMAKE_INSTALL_PREFIX=/app .",
             "make install"
           ],
+          "cleanup": [],
+          "cleanup-commands": [],
           "sources": [
             {
                 "type": "archive",
@@ -37,14 +39,19 @@
                 "ghc -threaded --make Setup",
                 "./Setup configure --prefix=/app",
                 "./Setup build",
-                "./Setup install"
+                "./Setup install",
+                "mkdir -p /app/share/e-juice-calc/res/",
+                "rm res/Screenshot*",
+                "cp -r res/* /app/share/e-juice-calc/res/"
             ],
+            "cleanup": [],
+            "cleanup-commands": [],
             "sources": [
-            {
-                "type": "archive",
-                "url": "https://gitlab.com/rszibele/e-juice-calc/-/archive/master/e-juice-calc-master.tar.gz",
-                "sha256": "d0a0cbbeffd7b0cce4632c58f49d5316856ac59a1a6c9c7c1c49d952933f0186"
-            }
+                {
+                    "type": "archive",
+                    "url": "https://gitlab.com/rszibele/e-juice-calc/-/archive/1.0.3/e-juice-calc-1.0.3.tar.gz",
+                    "sha256": "a94f14cf782d916f21b7fdb0d8f074278b956e95834ec323f7dfd5b7191dd131"
+                }
             ]
         }
     ]

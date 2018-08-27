@@ -2,10 +2,10 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b47184095371e3e3ce108d26c4d0155384142709639f380c13ea7a06dca96ac1
+-- hash: 1760966feea2cd96638d67cc8470f0d20ebf37e68653b56981ff419c5c509f43
 
 name:           e-juice-calc
-version:        1.0.2
+version:        1.0.3
 description:    Please see the README on GitHub at <https://github.com/githubuser/e-juice-calc#readme>
 homepage:       https://github.com/githubuser/e-juice-calc#readme
 bug-reports:    https://github.com/githubuser/e-juice-calc/issues
