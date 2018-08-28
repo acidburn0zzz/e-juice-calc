@@ -3,7 +3,7 @@
     "runtime": "org.kde.Platform",
     "runtime-version": "5.11",
     "sdk": "org.kde.Sdk",
-    "command": "ejuicecalc",
+    "command": "e-juice-calc",
     "rename-desktop-file": "e-juice-calc.desktop",
     "rename-icon": "e-juice-calc-icon",
     "rename-appdata-file": "e-juice-calc.appdata.xml",
