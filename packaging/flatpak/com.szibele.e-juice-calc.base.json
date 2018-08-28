@@ -42,7 +42,6 @@
                 "./Setup install",
                 "mkdir -p /app/share/e-juice-calc/res/",
                 "rm res/Screenshot*",
-                "rm -f res/*.svg",
                 "cp -r res/* /app/share/e-juice-calc/res/",
                 "mkdir -p /app/share/metainfo /app/share/appdata /app/share/applications /app/share/icons/hicolor/scalable/apps",
                 "cp packaging/com.szibele.e-juice-calc.appdata.xml /app/share/metainfo/",
