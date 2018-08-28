@@ -57,6 +57,16 @@ initialDocumentSearch "linux"   = [ "/app/share/e-juice-calc/res/Main.qml"      
                                   ]
 initialDocumentSearch _         = ["res/Main.qml"]
 
+-- |Get the directory from the main resource file.
+-- |TODO: FIXME: there's definitely better ways of doin this without hard-coding.
+resDirectory :: String -> IO String
+resDirectory "/app/share/e-juice-calc/res/Main.qml" = pure "/app/share/e-juice-calc/res/"
+resDirectory "/usr/share/e-juice-calc/res/Main.qml" = pure "/usr/share/e-juice-calc/res/"
+resDirectory "/usr/local/share/e-juice-calc/res/Main.qml" = pure "/usr/local/share/e-juice-calc/res/"
+resDirectory _ = do
+    cwd <- getCurrentDirectory
+    pure $ cwd ++ "/res/"
+
 -- |Given a list of file paths, determine which one is usable.
 initialDocument :: [String] -> IO (Maybe String)
 initialDocument [] = pure Nothing
@@ -94,6 +104,7 @@ main = do
     case fp of
         Nothing       -> pure ()
         Just filePath -> do
+            resDir <- resDirectory filePath
             -- launch process with appropriate arguments.
             bracket
                 -- create our process.
@@ -103,7 +114,7 @@ main = do
                 -- run our webserver and wait for shutdown signal.
                 (\_ -> do
                     shutdownSignal <- State.getShutdown state
-                    race_ (takeMVar shutdownSignal) (runSettings warpSettings (app inputData state)))
+                    race_ (takeMVar shutdownSignal) (runSettings warpSettings (app resDir inputData state)))
             -- save the configuration.
             lastFilePath <- State.getFilePath state
             fileSaved <- Configuration.save (Configuration.setLastFile configuration lastFilePath) configFilePath
@@ -114,11 +125,11 @@ main = do
                 exceptionHandler _ _ = pure ()
                 warpSettings = setOnException exceptionHandler $ setPort port defaultSettings
 
-app :: InputData -> IORef State.StateData -> Application
-app initInputData state request respond = do
+app :: String -> InputData -> IORef State.StateData -> Application
+app resDir initInputData state request respond = do
     reqBody <- strictRequestBody request
     response <- case rawPathInfo request of
-        "/init"      -> haskellInit initInputData
+        "/init"      -> haskellInit resDir initInputData
         "/open"      -> haskellOpen state reqBody
         "/save"      -> haskellSave state reqBody
         "/filepath"  -> haskellGetFilePath state
@@ -140,8 +151,8 @@ tryDecode str = do
         Just x  -> ExceptT (pure (Right x))
 
 
-haskellInit :: InputData -> IO Response
-haskellInit inputData = pure $ Ajax.toResponse $ Ajax.makeSuccess (decode $ encode inputData) -- TODO: FIXME: encode...decode
+haskellInit :: String -> InputData -> IO Response
+haskellInit resDir inputData = pure $ Ajax.toResponse $ Ajax.makeSuccess (decode $ encode (resDir, inputData)) -- TODO: FIXME: encode...decode
 
 -- read file and validate
 haskellOpen :: IORef State.StateData -> BL.ByteString -> IO Response

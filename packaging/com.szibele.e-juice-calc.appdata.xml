@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+​<!-- Copyright 2018 Richard Szibele <richard@szibele.com> -->
+​<component type="desktop-application">
+    <id>com.szibele.e_juice_calc</id>
+    <metadata_license>CC-BY-SA-3.0</metadata_license>
+    <project_license>GPL-2.0</project_license>
+    <name>E-Juice-Calc</name>
+    <summary>A Free and Simple to use E-Juice calculator.</summary>
+    <description>
+        <p>
+            E-Juice-Calc is a free and simple to use E-Juice calculator made with Haskell and QML.
+            You can calculate the required E-Liquid amounts (VG/PG) with or without the nicotine content and add flavors to your mix. 
+            It also supports saving and loading profiles.
+        </p>
+    </description>
+    <launchable type="desktop-id">com.szibele.e-juice-calc</launchable>
+    <screenshots>
+        <screenshot type="default">
+            <caption>The main E-Juice-Calc window</caption>
+            <image type="source" width="408" height="730">https://gitlab.com/rszibele/e-juice-calc/raw/master/res/Screenshot_1.png?raw=true</image>
+        </screenshot>
+    </screenshots>
+    <url type="homepage">https://gitlab.com/rszibele/e-juice-calc</url>
+    <provides>
+        <binary>e-juice-calc</binary>
+    </provides>
+    <developer_name>Richard Szibele</developer_name>
+    <categories>
+        <category>Utility</category>
+    </categories>
+    <keywords>
+        <keyword>E-Juice</keyword>
+        <keyword>E-Liquid</keyword>
+        <keyword>Calculator</keyword>
+    </keyword>
+</component>

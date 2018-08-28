@@ -2,6 +2,10 @@
 
 ## Unreleased changes
 
+## v1.0.4
+
+Added icon support.
+
 ## v1.0.3
 
 Minor build fixes.

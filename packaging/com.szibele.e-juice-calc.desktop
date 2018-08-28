@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=E-Juice-Calc
+GenericName=E-Juice Calculator
+Categories=Utility
+Comment=Calculate your E-Juice
+Icon=com.szibele.e-juice-calc
+Terminal=false
+Exec=ejuicecalc

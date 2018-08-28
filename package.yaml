@@ -1,5 +1,5 @@
 name:                e-juice-calc
-version:             1.0.3
+version:             1.0.4
 github:              "githubuser/e-juice-calc"
 license:             GPL-2
 author:              "Richard Szibele"
@@ -38,7 +38,7 @@ library:
   source-dirs: src
 
 executables:
-  ejuicecalc:
+  e-juice-calc:
     main:                Main.hs
     source-dirs:         app
     ghc-options:

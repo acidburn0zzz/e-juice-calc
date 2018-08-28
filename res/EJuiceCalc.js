@@ -148,7 +148,11 @@ function setRecipe(recipe) {
 // This function MUST be called before functions in this file should be used.
 function initialize(host, port) {
     baseUrl = 'http://' + host + ':' + port
-    haskellInit(function(inputData) {
+    haskellInit(function(arr) {
+        var resDir = arr[0];
+        var inputData = arr[1];
+        // set icon
+        qmllb.setWindowIcon(main, resDir + 'icon2.png')
         // set gui components based on input data
         main.recalculateOnChange = false;
         setInputData(inputData);
