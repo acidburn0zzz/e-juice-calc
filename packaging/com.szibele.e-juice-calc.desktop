@@ -6,4 +6,4 @@ Categories=Utility
 Comment=Calculate your E-Juice
 Icon=com.szibele.e-juice-calc
 Terminal=false
-Exec=ejuicecalc
+Exec=e-juice-calc
