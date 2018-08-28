@@ -45,6 +45,7 @@
                 "./Setup install",
                 "mkdir -p /app/share/e-juice-calc/res/",
                 "rm res/Screenshot*",
+                "rm res/*.svg",
                 "cp -r res/* /app/share/e-juice-calc/res/"
             ],
             "cleanup": [],
