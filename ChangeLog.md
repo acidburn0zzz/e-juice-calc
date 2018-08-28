@@ -4,7 +4,7 @@
 
 ## v1.0.4
 
-Added icon support.
+Added icon support + cleaned up directory structure.
 
 ## v1.0.3
 
