@@ -48,7 +48,7 @@
                 "cp packaging/com.szibele.e-juice-calc.appdata.xml /app/share/metainfo/",
                 "cp packaging/com.szibele.e-juice-calc.appdata.xml /app/share/appdata/",
                 "cp packaging/com.szibele.e-juice-calc.desktop /app/share/applications/",
-                "cp packaging/com.szibele.e-juice-calc.svg /app/share/icons/hicolor/scalable/apps/"
+                "cp res/icon2.svg /app/share/icons/hicolor/scalable/apps/com.szibele.e-juice-calc.svg"
             ],
             "cleanup": [],
             "cleanup-commands": [],
