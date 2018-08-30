@@ -2,6 +2,10 @@
 
 ## Unreleased changes
 
+## v1.0.5
+
+Multiple architecture support.
+
 ## v1.0.4
 
 Added icon support + cleaned up directory structure.
