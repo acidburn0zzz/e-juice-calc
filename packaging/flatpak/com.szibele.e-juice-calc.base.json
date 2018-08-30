@@ -54,8 +54,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.com/rszibele/e-juice-calc/-/archive/1.0.4/e-juice-calc-1.0.4.tar.gz",
-                    "sha256": "5cdc684d3ea29cf65f7a197431272092fd5bd367943c151eaaced75e34848662"
+                    "url": "https://gitlab.com/rszibele/e-juice-calc/-/archive/1.0.5/e-juice-calc-1.0.4.tar.gz",
+                    "sha256": "b423d32b7a1b5d7ba1ac2cd4becb44b69da9f844770213c71a32296390107478"
                 }
             ]
         }
