@@ -9,7 +9,7 @@ import GHC.Generics
 
 -- |The version of E-Juice-Calc.
 version :: String
-version = "1.0.4"
+version = "1.0.5"
 
 -- |Type alias for milliliters.
 type Milliliter = Double
