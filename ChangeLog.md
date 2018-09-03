@@ -4,7 +4,7 @@
 
 ## v1.0.5
 
-Multiple architecture support.
+Added multiple architecture support.
 
 ## v1.0.4
 

@@ -5,7 +5,8 @@
     "sdk": "org.kde.Sdk",
     "command": "e-juice-calc",
     "finish-args": [
-        "--socket=x11"
+        "--socket=x11",
+        "--share=ipc"
     ],
     "cleanup": [
     ],

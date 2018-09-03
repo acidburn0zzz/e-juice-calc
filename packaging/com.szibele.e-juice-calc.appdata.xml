@@ -12,6 +12,7 @@
             It also supports saving and loading profiles.
         </p>
     </description>
+    <content_rating type="oars-1.1" />
     <launchable type="desktop-id">com.szibele.e-juice-calc</launchable>
     <screenshots>
         <screenshot type="default">
@@ -20,6 +21,7 @@
         </screenshot>
     </screenshots>
     <url type="homepage">https://gitlab.com/rszibele/e-juice-calc</url>
+    <url type="bugtracker">https://gitlab.com/rszibele/e-juice-calc/issues</url>
     <provides>
         <binary>e-juice-calc</binary>
     </provides>
@@ -33,6 +35,13 @@
         <keyword>Calculator</keyword>
     </keywords>
     <releases>
+        <release version="1.0.5" date="2018-08-31">
+            <description>
+                <p>
+                    Added multiple architecture support.
+                </p>
+            </description>
+        </release>
         <release version="1.0.4" date="2018-08-28">
             <description>
                 <p>
