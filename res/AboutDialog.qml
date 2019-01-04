@@ -24,6 +24,9 @@ Dialog {
         Label {
             text: 'Version: ' + version
         }
-        Label { text: 'Copyright (C) 2018 Richard Szibele' }
+        Label {
+            text: 'License: GNU GPLv2'
+        }
+        Label { text: 'Copyright (C) 2018-2019 Richard Szibele' }
     }
 }
