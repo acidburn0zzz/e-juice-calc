@@ -254,7 +254,7 @@ function menuFileQuit() {
     })
 }
 function menuHelpHelp() {
-    Qt.openUrlExternally("https://szibele.com/");
+    Qt.openUrlExternally("https://gitlab.com/rszibele/e-juice-calc");
 }
 function menuHelpAbout() {
     haskellVersion(function(version) {
