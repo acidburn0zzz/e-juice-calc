@@ -11,14 +11,42 @@ The features include:
 * save and load support
 * auto-load of the last saved setup
 
-## Building
+## Installation
+
+### GNU/Linux (all flavors)
+
+To install E-Juice-Calc, you will need to install it through Flatpak.
+
+```
+$ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+$ flatpak install flathub com.szibele.e-juice-calc
+```
+
+### Windows
+
+Currently N/A
+
+### Mac OS
+
+Currently N/A
+
+## How to Run
+
+You can run it through the menu entry, as Flatpak creates it automatically.
+You can however, also run it through the command line:
+
+```
+$ flatpak run com.szibele.e-juice-calc
+```
+
+## Build Instructions
 
 You will need to have stack installed, to be able to build q-juice-calc.
 
 To build e-juice-calc, run the following in the root directory:
-````
+```
 $ stack build
-````
+```
 
 You will also have to build qml-language-bridge, which resides in the subdirectory qml-language-bridge.
 For build instructions visit the <a href="https://gitlab.com/rszibele/qml-language-bridge">qml-language-bridge repository</a>.
