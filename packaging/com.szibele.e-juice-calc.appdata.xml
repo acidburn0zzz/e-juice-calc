@@ -39,6 +39,13 @@
         <keyword>Calculator</keyword>
     </keywords>
     <releases>
+        <release version="1.0.6" date="2019-01-05">
+            <description>
+                <p>
+                    Various minor fixes.
+                </p>
+            </description>
+        </release>
         <release version="1.0.5" date="2018-08-31">
             <description>
                 <p>
