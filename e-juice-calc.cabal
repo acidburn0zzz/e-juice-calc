@@ -4,16 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9296602a51ed7e1841997f96ad6cbbc57942092cc471131f21c0ed3558ae581e
+-- hash: 534a505b8fc473591114732d43a470f45c08d04f42827e874504dab461c6de8a
 
 name:           e-juice-calc
-version:        1.0.4
+version:        1.0.6
 description:    Please see the README on GitHub at <https://github.com/githubuser/e-juice-calc#readme>
 homepage:       https://github.com/githubuser/e-juice-calc#readme
 bug-reports:    https://github.com/githubuser/e-juice-calc/issues
 author:         Richard Szibele
 maintainer:     richard@szibele.com
-copyright:      2018 Richard Szibele
+copyright:      2019 Richard Szibele
 license:        GPL-2
 license-file:   LICENSE
 build-type:     Simple
