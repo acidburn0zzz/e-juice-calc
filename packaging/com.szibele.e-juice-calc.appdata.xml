@@ -4,7 +4,7 @@
     <metadata_license>CC-BY-SA-3.0</metadata_license>
     <project_license>GPL-2.0</project_license>
     <name>E-Juice-Calc</name>
-    <summary>A Free and Simple to use E-Juice calculator</summary>
+    <summary>Free and simple to use E-Juice calculator</summary>
     <description>
         <p>
             E-Juice-Calc is a free and simple to use E-Juice calculator made with Haskell and QML.
