@@ -16,8 +16,12 @@
     <launchable type="desktop-id">com.szibele.e-juice-calc.desktop</launchable>
     <screenshots>
         <screenshot type="default">
-            <caption>The main E-Juice-Calc window</caption>
+            <caption>Main window</caption>
             <image type="source" width="408" height="730">https://gitlab.com/rszibele/e-juice-calc/raw/master/res/Screenshot_1.png?raw=true</image>
+        </screenshot>
+        <screenshot type="default">
+            <caption>Add flavor window</caption>
+            <image type="source" width="408" height="730">https://gitlab.com/rszibele/e-juice-calc/raw/master/res/Screenshot_2.png?raw=true</image>
         </screenshot>
     </screenshots>
     <url type="homepage">https://gitlab.com/rszibele/e-juice-calc</url>
