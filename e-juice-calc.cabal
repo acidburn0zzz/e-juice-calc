@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a40671af4f2107bfca83162c2db121820009e2535ce74c79a24121574c3e948b
+-- hash: 9296602a51ed7e1841997f96ad6cbbc57942092cc471131f21c0ed3558ae581e
 
 name:           e-juice-calc
 version:        1.0.4
@@ -15,10 +17,9 @@ copyright:      2018 Richard Szibele
 license:        GPL-2
 license-file:   LICENSE
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
-    ChangeLog.md
     README.md
+    ChangeLog.md
 
 source-repository head
   type: git
