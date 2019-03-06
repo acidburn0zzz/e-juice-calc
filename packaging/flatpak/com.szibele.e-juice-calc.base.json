@@ -1,7 +1,7 @@
 {
     "app-id": "com.szibele.e-juice-calc",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.11",
+    "runtime-version": "5.12",
     "sdk": "org.kde.Sdk",
     "command": "e-juice-calc",
     "finish-args": [

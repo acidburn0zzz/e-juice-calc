@@ -1,5 +1,5 @@
 name:                e-juice-calc
-version:             1.0.6
+version:             1.0.7
 github:              "githubuser/e-juice-calc"
 license:             GPL-2
 author:              "Richard Szibele"
@@ -21,6 +21,7 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- stm >= 2.5.0.0 && < 3
 - transformers
 - text
 - bytestring

@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 534a505b8fc473591114732d43a470f45c08d04f42827e874504dab461c6de8a
+-- hash: c586596523d5b90388b34a27a65a21912a4cf93d24edfbdb30c92355eda99d86
 
 name:           e-juice-calc
-version:        1.0.6
+version:        1.0.7
 description:    Please see the README on GitHub at <https://github.com/githubuser/e-juice-calc#readme>
 homepage:       https://github.com/githubuser/e-juice-calc#readme
 bug-reports:    https://github.com/githubuser/e-juice-calc/issues
@@ -45,6 +45,7 @@ library
     , http-types
     , process
     , random
+    , stm >=2.5.0.0 && <3
     , string-conversions
     , text
     , transformers
@@ -69,6 +70,7 @@ executable e-juice-calc
     , http-types
     , process
     , random
+    , stm >=2.5.0.0 && <3
     , string-conversions
     , text
     , transformers
@@ -94,6 +96,7 @@ test-suite ejuicecalc-test
     , http-types
     , process
     , random
+    , stm >=2.5.0.0 && <3
     , string-conversions
     , text
     , transformers

@@ -7,7 +7,7 @@
     <summary>Free and simple to use E-Juice calculator</summary>
     <description>
         <p>
-            E-Juice-Calc is a free and simple to use E-Juice calculator made with Haskell and QML.
+            E-Juice-Calc is a free and open source simple to use E-Juice calculator made with Haskell and QML.
             You can calculate the required E-Liquid amounts (VG/PG) with or without the nicotine content and add flavors to your mix. 
             It also supports saving and loading profiles.
         </p>
@@ -39,25 +39,25 @@
         <keyword>Calculator</keyword>
     </keywords>
     <releases>
+        <release version="1.0.7" date="2019-03-06">
+            <description>
+                <p>Updated to use the org.kde.Platform runtime version 5.12.</p>
+                <p>Updated the stack lts to 13.10.</p>
+            </description>
+        </release>
         <release version="1.0.6" date="2019-01-05">
             <description>
-                <p>
-                    Various minor fixes.
-                </p>
+                <p>Various minor fixes.</p>
             </description>
         </release>
         <release version="1.0.5" date="2018-08-31">
             <description>
-                <p>
-                    Added multiple architecture support.
-                </p>
+                <p>Added multiple architecture support.</p>
             </description>
         </release>
         <release version="1.0.4" date="2018-08-28">
             <description>
-                <p>
-                    Minor build fixes.
-                </p>
+                <p>Minor build fixes.</p>
             </description>
         </release>
     </releases>
