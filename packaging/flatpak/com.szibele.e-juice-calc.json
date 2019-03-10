@@ -101,6 +101,27 @@
         },
         {
             "build-commands": [
+                "mkdir -p /app/lib",
+                "ln -s /lib/aarch64-linux-gnueabihf/libtinfo.so /app/lib/libtinfo.so.5",
+                "./configure --prefix=/app",
+                "make install"
+            ],
+            "buildsystem": "simple",
+            "cleanup": [],
+            "name": "ghc-8.6.2-aarch64",
+            "only-arches": [
+                "aarch64"
+            ],
+            "sources": [
+                {
+                    "sha256": "841d4cf0673a4db44d93082f56479ffd679bd369c67d715e7b288630ec7eb4f0",
+                    "type": "archive",
+                    "url": "https://github.com/commercialhaskell/ghc/releases/download/ghc-8.6.2-release/ghc-8.6.2-aarch64-deb8-linux.tar.xz"
+                }
+            ]
+        },
+        {
+            "build-commands": [
                 "ghc -threaded --make Setup",
                 "./Setup configure --prefix=/app",
                 "./Setup build",
