@@ -38,6 +38,8 @@
     "modules": [
         {
             "build-commands": [
+                "mkdir -p /app/lib",
+                "ln -s /usr/lib/i386-linux-gnu/libtinfo.so /app/lib/libtinfo.so.5",
                 "./configure --prefix=/app",
                 "make install"
             ],
@@ -57,6 +59,8 @@
         },
         {
             "build-commands": [
+                "mkdir -p /app/lib",
+                "ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so /app/lib/libtinfo.so.5",
                 "./configure --prefix=/app",
                 "make install"
             ],
@@ -76,6 +80,8 @@
         },
         {
             "build-commands": [
+                "mkdir -p /app/lib",
+                "ln -s /lib/arm-linux-gnueabihf/libtinfo.so /app/lib/libtinfo.so.5",
                 "./configure --prefix=/app",
                 "make install"
             ],
@@ -390,30 +396,6 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "stm-2.5.0.0",
-            "only-arches": [],
-            "sources": [
-                {
-                    "sha256": "",
-                    "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/stm-2.5.0.0.tar.gz"
-                },
-                {
-                    "sha256": "1fb8bd117550d560d1b33a6404e27fdb090e70921e0f6434722cdbbce20d8256",
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/stm/2.5.0.0/stm.cabal"
-                }
-            ]
-        },
-        {
-            "build-commands": [
-                "ghc -threaded --make Setup",
-                "./Setup configure --prefix=/app",
-                "./Setup build",
-                "./Setup install"
-            ],
-            "buildsystem": "simple",
-            "cleanup": [],
             "name": "base-compat-0.10.5",
             "only-arches": [],
             "sources": [
@@ -498,30 +480,6 @@
                     "sha256": "68cc6cf665e7212334a51b63d6936daeaca023b2cfe8637d130acfe95f91700b",
                     "type": "file",
                     "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/utf8-string/1.0.1.1/utf8-string.cabal"
-                }
-            ]
-        },
-        {
-            "build-commands": [
-                "ghc -threaded --make Setup",
-                "./Setup configure --prefix=/app",
-                "./Setup build",
-                "./Setup install"
-            ],
-            "buildsystem": "simple",
-            "cleanup": [],
-            "name": "text-1.2.3.1",
-            "only-arches": [],
-            "sources": [
-                {
-                    "sha256": "",
-                    "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/text-1.2.3.1.tar.gz"
-                },
-                {
-                    "sha256": "fc9719142e5cdd6f254b3f4831b133d3fad697ae9b54fe26424f0e023c8cc87d",
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/text/1.2.3.1/text.cabal"
                 }
             ]
         },
@@ -1115,9 +1073,9 @@
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "d0765438e45987f34750b0758b0a11449f62e141a0d4805be56c112bc5b40384",
+                    "sha256": "9360433ac7fccfa2ba78f9f6ccd28c806c3e6f93f1b9bdc343e5ebe742df69c3",
                     "type": "archive",
-                    "url": "https://gitlab.com/rszibele/e-juice-calc/-/archive/1.0.6/e-juice-calc-1.0.6.tar.gz"
+                    "url": "https://gitlab.com/rszibele/e-juice-calc/-/archive/1.0.7/e-juice-calc-1.0.7.tar.gz"
                 }
             ]
         }

@@ -1,0 +1,6 @@
+We need to add the following two commands to the GHC build as of KDE SDK 5.12!
+
+NB: "arm" in flatpak is for ARMv7, which is /lib/arm-linux-gnueabihf/ on Debian.
+
+mkdir -p /app/lib
+ln -s /lib/x86_64-linux-gnu/libtinfo.so /app/lib/libtinfo.so.5
