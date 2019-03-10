@@ -3,35 +3,32 @@
     "cleanup": [],
     "cleanup-commands": [
         "rm -rf /app/bin/ghc",
-        "rm -rf /app/bin/ghc-8.2.2",
+        "rm -rf /app/bin/ghc-8.6.3",
         "rm -rf /app/bin/ghc-pkg",
-        "rm -rf /app/bin/ghc-pkg-8.2.2",
+        "rm -rf /app/bin/ghc-pkg-8.6.3",
         "rm -rf /app/bin/ghci",
-        "rm -rf /app/bin/ghci-8.2.2",
+        "rm -rf /app/bin/ghci-8.6.3",
         "rm -rf /app/bin/haddock",
-        "rm -rf /app/bin/haddock-ghc-8.2.2",
+        "rm -rf /app/bin/haddock-ghc-8.6.3",
         "rm -rf /app/bin/hp2ps",
         "rm -rf /app/bin/hpc",
         "rm -rf /app/bin/hsc2hs",
         "rm -rf /app/bin/runghc",
-        "rm -rf /app/bin/runghc-8.2.2",
+        "rm -rf /app/bin/runghc-8.6.3",
         "rm -rf /app/bin/runhaskell",
         "rm -rf /app/lib/debug",
-        "rm -rf /app/lib/ghc-8.2.2",
-        "rm -rf /app/lib/i386-linux-ghc-8.2.2",
-        "rm -rf /app/share/doc/ghc-8.2.2",
-        "rm -rf /app/share/doc/i386-linux-ghc-8.2.2",
+        "rm -rf /app/lib/ghc-8.6.3",
+        "rm -rf /app/lib/i386-linux-ghc-8.6.3",
+        "rm -rf /app/share/doc/ghc-8.6.3",
+        "rm -rf /app/share/doc/i386-linux-ghc-8.6.3",
         "rm -rf /app/share/man",
-        "rm -rf /app/share/i386-linux-ghc-8.2.2",
-        "rm -rf /app/lib/x86_64-linux-ghc-8.2.2",
-        "rm -rf /app/share/doc/x86_64-linux-ghc-8.2.2",
-        "rm -rf /app/share/x86_64-linux-ghc-8.2.2",
-        "rm -rf /app/lib/armv7-linux-ghc-8.2.2",
-        "rm -rf /app/share/doc/armv7-linux-ghc-8.2.2",
-        "rm -rf /app/share/armv7-linux-ghc-8.2.2",
-        "rm -rf /app/lib/aarch64-linux-ghc-8.2.2",
-        "rm -rf /app/share/doc/aarch64-linux-ghc-8.2.2",
-        "rm -rf /app/share/aarch64-linux-ghc-8.2.2"
+        "rm -rf /app/share/i386-linux-ghc-8.6.3",
+        "rm -rf /app/lib/x86_64-linux-ghc-8.6.3",
+        "rm -rf /app/share/doc/x86_64-linux-ghc-8.6.3",
+        "rm -rf /app/share/x86_64-linux-ghc-8.6.3",
+        "rm -rf /app/lib/armv7-linux-ghc-8.6.3",
+        "rm -rf /app/share/doc/armv7-linux-ghc-8.6.3",
+        "rm -rf /app/share/armv7-linux-ghc-8.6.3"
     ],
     "command": "e-juice-calc",
     "finish-args": [
@@ -46,15 +43,15 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "ghc-8.2.2-i386",
+            "name": "ghc-8.6.3-i386",
             "only-arches": [
                 "i386"
             ],
             "sources": [
                 {
-                    "sha256": "9e67d72d76482e0ba91c718e727b00386a1a12a32ed719714976dc56ca8c8223",
+                    "sha256": "b57070ba8c70b1333a3e47ce124baf791be39c20a592954772532fd6dd51882f",
                     "type": "archive",
-                    "url": "https://github.com/commercialhaskell/ghc/releases/download/ghc-8.2.2-release/ghc-8.2.2-i386-deb8-linux.tar.xz"
+                    "url": "https://github.com/commercialhaskell/ghc/releases/download/ghc-8.6.3-release/ghc-8.6.3-i386-deb8-linux.tar.xz"
                 }
             ]
         },
@@ -65,15 +62,15 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "ghc-8.2.2-x86_64",
+            "name": "ghc-8.6.3-x86_64",
             "only-arches": [
                 "x86_64"
             ],
             "sources": [
                 {
-                    "sha256": "48e205c62b9dc1ccf6739a4bc15a71e56dde2f891a9d786a1b115f0286111b2a",
+                    "sha256": "291ca565374f4d51cc311488581f3279d3167a064fabfd4a6722fe2bd4532fd5",
                     "type": "archive",
-                    "url": "https://github.com/commercialhaskell/ghc/releases/download/ghc-8.2.2-release/ghc-8.2.2-x86_64-deb8-linux.tar.xz"
+                    "url": "https://github.com/commercialhaskell/ghc/releases/download/ghc-8.6.3-release/ghc-8.6.3-x86_64-deb8-linux.tar.xz"
                 }
             ]
         },
@@ -84,58 +81,15 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "ghc-8.2.2-armv7",
+            "name": "ghc-8.6.3-armv7",
             "only-arches": [
                 "arm"
             ],
             "sources": [
                 {
-                    "sha256": "86e8d339c763575a9dba097fb1d8e17b9622156b7cede888187615682b46bbca",
+                    "sha256": "559246ee220bd34e6af0a8ab0d5eeb5bfcc84796ac0ce2115f43f2dc30ad69e3",
                     "type": "archive",
-                    "url": "https://github.com/commercialhaskell/ghc/releases/download/ghc-8.2.2-release/ghc-8.2.2-armv7-deb8-linux.tar.xz"
-                }
-            ]
-        },
-        {
-            "build-commands": [
-                "./configure --prefix=/app",
-                "make install"
-            ],
-            "buildsystem": "simple",
-            "cleanup": [],
-            "name": "ghc-8.2.2-aarch64",
-            "only-arches": [
-                "aarch64"
-            ],
-            "sources": [
-                {
-                    "sha256": "676698b0b3744af80a610d9e18e40735b9cf8ec337c072d8314d85cba8af4acc",
-                    "type": "archive",
-                    "url": "https://github.com/commercialhaskell/ghc/releases/download/ghc-8.2.2-release/ghc-8.2.2-aarch64-deb8-linux.tar.xz"
-                }
-            ]
-        },
-        {
-            "build-commands": [
-                "ghc -threaded --make Setup",
-                "./Setup configure --prefix=/app",
-                "./Setup build",
-                "./Setup install"
-            ],
-            "buildsystem": "simple",
-            "cleanup": [],
-            "name": "word8-0.1.3",
-            "only-arches": [],
-            "sources": [
-                {
-                    "sha256": "2630934c75728bfbf390c1f0206b225507b354f68d4047b06c018a36823b5d8a",
-                    "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/word8-0.1.3.tar.gz"
-                },
-                {
-                    "sha256": "e5464d0600821a116467d4b12fef12b15ff040c3599500e5f0274225e78c6faf",
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/word8/0.1.3/word8.cabal"
+                    "url": "https://github.com/commercialhaskell/ghc/releases/download/ghc-8.6.3-release/ghc-8.6.3-armv7-deb8-linux.tar.xz"
                 }
             ]
         },
@@ -159,7 +113,7 @@
                 {
                     "sha256": "7b67624fd76ddf97c206de0801dc7e888097e9d572974be9b9ea6551d76965df",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/random/1.1/random.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/random/1.1/random.cabal"
                 }
             ]
         },
@@ -172,18 +126,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "dlist-0.8.0.4",
+            "name": "word8-0.1.3",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "acf1867b80cdd618b8d904e89eea33be60d3c4c3aeb80d61f29229a301cc397a",
+                    "sha256": "2630934c75728bfbf390c1f0206b225507b354f68d4047b06c018a36823b5d8a",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/dlist-0.8.0.4.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/word8-0.1.3.tar.gz"
                 },
                 {
-                    "sha256": "3ebbb7022246f446fc625b77d0e1f509d66eedf1deb22bbd6df5c8450aaf923a",
+                    "sha256": "e5464d0600821a116467d4b12fef12b15ff040c3599500e5f0274225e78c6faf",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/dlist/0.8.0.4/dlist.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/word8/0.1.3/word8.cabal"
                 }
             ]
         },
@@ -207,7 +161,31 @@
                 {
                     "sha256": "a952817dcbe20af0346fb55a28c13e95e2ddbf3e99f9b4fffdc063f150f13b20",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/byteorder/1.0.4/byteorder.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/byteorder/1.0.4/byteorder.cabal"
+                }
+            ]
+        },
+        {
+            "build-commands": [
+                "ghc -threaded --make Setup",
+                "./Setup configure --prefix=/app",
+                "./Setup build",
+                "./Setup install"
+            ],
+            "buildsystem": "simple",
+            "cleanup": [],
+            "name": "dlist-0.8.0.5",
+            "only-arches": [],
+            "sources": [
+                {
+                    "sha256": "98a88aa839b40d4aee8b08880030d282d627b63de311f5414dca6e831a951b43",
+                    "type": "archive",
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/dlist-0.8.0.5.tar.gz"
+                },
+                {
+                    "sha256": "173bc132a63f29660de117eca5ee22bf3205675c7d5dd1f3e3779621d70c6d1a",
+                    "type": "file",
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/dlist/0.8.0.5/dlist.cabal"
                 }
             ]
         },
@@ -231,7 +209,7 @@
                 {
                     "sha256": "aaf0d3d5050aa120b2eb98682bc7f8aeed947c1eb51a80375f32775af3d2ff68",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/semigroups/0.18.5/semigroups.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/semigroups/0.18.5/semigroups.cabal"
                 }
             ]
         },
@@ -244,18 +222,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "bytestring-builder-0.10.8.1.0",
+            "name": "integer-logarithms-1.0.2.2",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "6d7404773621efb88b256ff88912a7dbcebc7fb86d27868ef58478249892dbc2",
+                    "sha256": "ba86628d5c14f31fddccea86eeec122ed992af28d5b7ad964b2f5487605e7fc3",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/bytestring-builder-0.10.8.1.0.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/integer-logarithms-1.0.2.2.tar.gz"
                 },
                 {
-                    "sha256": "69d44ecfcf243390f582a515905d614b0dc5c318ead621ca5641cfbd0aa56dff",
+                    "sha256": "7c35772bd3077643774da79327b582675415c78655bb5550d3b80b89e06c0499",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/bytestring-builder/0.10.8.1.0/bytestring-builder.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/integer-logarithms/1.0.2.2/integer-logarithms.cabal"
                 }
             ]
         },
@@ -268,18 +246,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "bsb-http-chunked-0.0.0.2",
+            "name": "bsb-http-chunked-0.0.0.4",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "28cb750979763c815fbf69a6dc510f837b7ccbe262adf0a28ad270966737d5f4",
+                    "sha256": "148309e23eb8b261c1de374712372d62d8c8dc8ee504c392809c7ec33c0a0e7c",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/bsb-http-chunked-0.0.0.2.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/bsb-http-chunked-0.0.0.4.tar.gz"
                 },
                 {
-                    "sha256": "0571ef33ec5530104503d32eaf24f2d7c221f350e5fc475a6dd8e84311bc0ca1",
+                    "sha256": "0f97aaf6c0efc3b2355a150148ad8c35b39df85621f51180f43759e968ae67b6",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/bsb-http-chunked/0.0.0.2/bsb-http-chunked.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/bsb-http-chunked/0.0.0.4/bsb-http-chunked.cabal"
                 }
             ]
         },
@@ -292,66 +270,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "integer-logarithms-1.0.2.1",
+            "name": "th-abstraction-0.2.10.0",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "32ad4a482a60ec957d1af1268952e2a6b382b67438c14f74f6c2aef2e49b48f2",
+                    "sha256": "c9dbffcaa4ed04f257427e61da135797190b572d4e37662f7821844cbd2114af",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/integer-logarithms-1.0.2.1.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/th-abstraction-0.2.10.0.tar.gz"
                 },
                 {
-                    "sha256": "924bd2f574943848ba19189409b9acdc645612eda4d9130b40a62e9cb575bb47",
+                    "sha256": "d5b5f2c4a3072b907e73dbdbf6f59cf55675b3042f3b02bf6a789d3d076a6f88",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/integer-logarithms/1.0.2.1/integer-logarithms.cabal"
-                }
-            ]
-        },
-        {
-            "build-commands": [
-                "ghc -threaded --make Setup",
-                "./Setup configure --prefix=/app",
-                "./Setup build",
-                "./Setup install"
-            ],
-            "buildsystem": "simple",
-            "cleanup": [],
-            "name": "th-abstraction-0.2.8.0",
-            "only-arches": [],
-            "sources": [
-                {
-                    "sha256": "ca136bd3fa76230a288ba0a3a65c36a555f32c179369a258b4a04d2f30e12758",
-                    "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/th-abstraction-0.2.8.0.tar.gz"
-                },
-                {
-                    "sha256": "db5a2ee91cce9afbe7e251c925c2d2b78725b515f6655eb5079aaeeb935c247b",
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/th-abstraction/0.2.8.0/th-abstraction.cabal"
-                }
-            ]
-        },
-        {
-            "build-commands": [
-                "ghc -threaded --make Setup",
-                "./Setup configure --prefix=/app",
-                "./Setup build",
-                "./Setup install"
-            ],
-            "buildsystem": "simple",
-            "cleanup": [],
-            "name": "tagged-0.8.6",
-            "only-arches": [],
-            "sources": [
-                {
-                    "sha256": "ad16def0884cf6f05ae1ae8e90192cf9d8d9673fa264b249499bd9e4fac791dd",
-                    "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/tagged-0.8.6.tar.gz"
-                },
-                {
-                    "sha256": "b5e1de3b14ff198b548928f686e5e8783301dc231413f751c23f4ee10cd47a7c",
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/tagged/0.8.6/tagged.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/th-abstraction/0.2.10.0/th-abstraction.cabal"
                 }
             ]
         },
@@ -375,7 +305,7 @@
                 {
                     "sha256": "5b6a2c3cc70a35aabd4565fcb9bb1dd78fe2814a36e62428a9a1aae8c32441a1",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/primitive/0.6.4.0/primitive.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/primitive/0.6.4.0/primitive.cabal"
                 }
             ]
         },
@@ -388,18 +318,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "stm-2.4.5.0",
+            "name": "network-byte-order-0.0.0.0",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "31d7db183f13beed5c71409d12747a7f4cf3e145630553dc86336208540859a7",
+                    "sha256": "3bb6f1110d9ac16a18f0c2d5921af584044e667e46fcfbdebd7a1e74e329de71",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/stm-2.4.5.0.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/network-byte-order-0.0.0.0.tar.gz"
                 },
                 {
-                    "sha256": "8a8a091e7113f9c07eb9ad4f58a67eb4a5ec58b2857c6ba80fa4d8d45015524c",
+                    "sha256": "08ec8211b558fffee030fed9c9cf3dc9ba0b81e3fd8affe93b908b6e30f36a84",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/stm/2.4.5.0/stm.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/network-byte-order/0.0.0.0/network-byte-order.cabal"
                 }
             ]
         },
@@ -412,18 +342,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "appar-0.1.4",
+            "name": "tagged-0.8.6",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "58ea66abe4dd502d2fc01eecdb0828d5e214704a3c1b33b1f8b33974644c4b26",
+                    "sha256": "ad16def0884cf6f05ae1ae8e90192cf9d8d9673fa264b249499bd9e4fac791dd",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/appar-0.1.4.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/tagged-0.8.6.tar.gz"
                 },
                 {
-                    "sha256": "181580173130837a8274c8c192e042ef14dcddeb424972d57746d44a628ee217",
+                    "sha256": "b5e1de3b14ff198b548928f686e5e8783301dc231413f751c23f4ee10cd47a7c",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/appar/0.1.4/appar.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/tagged/0.8.6/tagged.cabal"
                 }
             ]
         },
@@ -436,18 +366,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "base-compat-0.9.3",
+            "name": "vector-0.12.0.2",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "7d602b0f0543fadbd598a090c738e9ce9b07a1896673dc27f1503ae3bea1a210",
+                    "sha256": "52e89dacaff10bedb8653181963cae928f9674a099bb706713dae83994bbc0f3",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/base-compat-0.9.3.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/vector-0.12.0.2.tar.gz"
                 },
                 {
-                    "sha256": "66691ca16b7ceb8c38bd2bac6ffe8e0eee25f408020cb8150a0444f8824e7458",
+                    "sha256": "6a898f00b9850fb84836f187324fac1e64c998fb4eac290d4aa91b50a4c586f5",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/base-compat/0.9.3/base-compat.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/vector/0.12.0.2/vector.cabal"
                 }
             ]
         },
@@ -460,18 +390,90 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "vector-0.12.0.1",
+            "name": "stm-2.5.0.0",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "b100ee79b9da2651276278cd3e0f08a3c152505cc52982beda507515af173d7b",
+                    "sha256": "",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/vector-0.12.0.1.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/stm-2.5.0.0.tar.gz"
                 },
                 {
-                    "sha256": "3d644fff350ee3eee2896e4d00cb45e73956f2862f0b18ee502282702682b978",
+                    "sha256": "1fb8bd117550d560d1b33a6404e27fdb090e70921e0f6434722cdbbce20d8256",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/vector/0.12.0.1/vector.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/stm/2.5.0.0/stm.cabal"
+                }
+            ]
+        },
+        {
+            "build-commands": [
+                "ghc -threaded --make Setup",
+                "./Setup configure --prefix=/app",
+                "./Setup build",
+                "./Setup install"
+            ],
+            "buildsystem": "simple",
+            "cleanup": [],
+            "name": "base-compat-0.10.5",
+            "only-arches": [],
+            "sources": [
+                {
+                    "sha256": "990aea21568956d44ab018c5dbfbaea014b9a0d5295d29ca7550149419a6fb41",
+                    "type": "archive",
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/base-compat-0.10.5.tar.gz"
+                },
+                {
+                    "sha256": "d49e174ed0daecd059c52d13d4f4de87b5609c81212a22adbb92431f9cd58fff",
+                    "type": "file",
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/base-compat/0.10.5/base-compat.cabal"
+                }
+            ]
+        },
+        {
+            "build-commands": [
+                "ghc -threaded --make Setup",
+                "./Setup configure --prefix=/app",
+                "./Setup build",
+                "./Setup install"
+            ],
+            "buildsystem": "simple",
+            "cleanup": [],
+            "name": "time-locale-compat-0.1.1.5",
+            "only-arches": [],
+            "sources": [
+                {
+                    "sha256": "07ff1566de7d851423a843b2de385442319348c621d4f779b3d365ce91ac502c",
+                    "type": "archive",
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/time-locale-compat-0.1.1.5.tar.gz"
+                },
+                {
+                    "sha256": "24b10ab3de20f5fc00f0e4f7832ac66dd5597033b78cff3bd6b4505d8a652e5b",
+                    "type": "file",
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/time-locale-compat/0.1.1.5/time-locale-compat.cabal"
+                }
+            ]
+        },
+        {
+            "build-commands": [
+                "ghc -threaded --make Setup",
+                "./Setup configure --prefix=/app",
+                "./Setup build",
+                "./Setup install"
+            ],
+            "buildsystem": "simple",
+            "cleanup": [],
+            "name": "appar-0.1.7",
+            "only-arches": [],
+            "sources": [
+                {
+                    "sha256": "f6de4f1d1332d665057a9fd1af6b805f66cf04299b03f53696f3c9db4f7ff21f",
+                    "type": "archive",
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/appar-0.1.7.tar.gz"
+                },
+                {
+                    "sha256": "d35b1a99f79142872cee337732c9188a60ad51179154fa9a93df85b9b590030b",
+                    "type": "file",
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/appar/0.1.7/appar.cabal"
                 }
             ]
         },
@@ -495,7 +497,7 @@
                 {
                     "sha256": "68cc6cf665e7212334a51b63d6936daeaca023b2cfe8637d130acfe95f91700b",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/utf8-string/1.0.1.1/utf8-string.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/utf8-string/1.0.1.1/utf8-string.cabal"
                 }
             ]
         },
@@ -508,66 +510,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "time-locale-compat-0.1.1.4",
+            "name": "text-1.2.3.1",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "f2d165557e2bbd014a4d6615b3e6c177adb034179a307a775e06836f91ebbe62",
+                    "sha256": "",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/time-locale-compat-0.1.1.4.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/text-1.2.3.1.tar.gz"
                 },
                 {
-                    "sha256": "15cbf4c77eb30d51b8b4b1db5ed3b19705ebf43792fe6e0d1aedf47569280b3d",
+                    "sha256": "fc9719142e5cdd6f254b3f4831b133d3fad697ae9b54fe26424f0e023c8cc87d",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/time-locale-compat/0.1.1.4/time-locale-compat.cabal"
-                }
-            ]
-        },
-        {
-            "build-commands": [
-                "ghc -threaded --make Setup",
-                "./Setup configure --prefix=/app",
-                "./Setup build",
-                "./Setup install"
-            ],
-            "buildsystem": "simple",
-            "cleanup": [],
-            "name": "text-1.2.3.0",
-            "only-arches": [],
-            "sources": [
-                {
-                    "sha256": "20e0b1627f613b32cc7f2d2e8dcc48a4a61938b24f3d14fb77cee694f0c9311a",
-                    "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/text-1.2.3.0.tar.gz"
-                },
-                {
-                    "sha256": "9dc17a9736056785e11d8a6e3e1e3a88b2a16ed78bf6f27d34ff0827bad1ca21",
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/text/1.2.3.0/text.cabal"
-                }
-            ]
-        },
-        {
-            "build-commands": [
-                "ghc -threaded --make Setup",
-                "./Setup configure --prefix=/app",
-                "./Setup build",
-                "./Setup install"
-            ],
-            "buildsystem": "simple",
-            "cleanup": [],
-            "name": "blaze-builder-0.4.1.0",
-            "only-arches": [],
-            "sources": [
-                {
-                    "sha256": "91fc8b966f3e9dc9461e1675c7566b881740f99abc906495491a3501630bc814",
-                    "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/blaze-builder-0.4.1.0.tar.gz"
-                },
-                {
-                    "sha256": "fa992674ea28f6ea6569d93388d757aef928af1e2f0ce80a35c29fb782252a2d",
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/blaze-builder/0.4.1.0/blaze-builder.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/text/1.2.3.1/text.cabal"
                 }
             ]
         },
@@ -591,31 +545,7 @@
                 {
                     "sha256": "9c4075e54aa6cabfe244e07e2a1de720f3e98a0a6980fc671ab9c0da30f0f259",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/string-conversions/0.4.0.1/string-conversions.cabal"
-                }
-            ]
-        },
-        {
-            "build-commands": [
-                "ghc -threaded --make Setup",
-                "./Setup configure --prefix=/app",
-                "./Setup build",
-                "./Setup install"
-            ],
-            "buildsystem": "simple",
-            "cleanup": [],
-            "name": "unix-compat-0.5.0.1",
-            "only-arches": [],
-            "sources": [
-                {
-                    "sha256": "c2f299e0439c15d93d5700911c922fd2b35543c19ba053779cd52f3b051caebd",
-                    "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/unix-compat-0.5.0.1.tar.gz"
-                },
-                {
-                    "sha256": "d656c2627de5915fd4e45d9d01d9eed8ab37359f8f1376f87d537ff01bf12d7b",
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/unix-compat/0.5.0.1/unix-compat.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/string-conversions/0.4.0.1/string-conversions.cabal"
                 }
             ]
         },
@@ -639,7 +569,7 @@
                 {
                     "sha256": "c11e24ac1df02ad71b861ba3f251b1ea8e64fa44632ba73944dd71767205bcad",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/zlib/0.6.2/zlib.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/zlib/0.6.2/zlib.cabal"
                 }
             ]
         },
@@ -652,18 +582,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "auto-update-0.1.4",
+            "name": "unix-compat-0.5.1",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "5e96c151024e8bcaf4eaa932e16995872b2017f46124b967e155744d9580b425",
+                    "sha256": "a39d0c79dd906763770b80ba5b6c5cb710e954f894350e9917de0d73f3a19c52",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/auto-update-0.1.4.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/unix-compat-0.5.1.tar.gz"
                 },
                 {
-                    "sha256": "eff944a412a26c7e3950c52128ea3b24ef6838f821f2db9854c62b320225f2ca",
+                    "sha256": "e54c8205ee0eb36d463990180a8127e75c8cb27b364d7cef12196ef2d82ebb9b",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/auto-update/0.1.4/auto-update.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/unix-compat/0.5.1/unix-compat.cabal"
                 }
             ]
         },
@@ -687,7 +617,7 @@
                 {
                     "sha256": "03b6836ca9cd3ad0e5a2f3cce989b001dd0e05f306a873db3196037adb30e0a4",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/hashable/1.2.7.0/hashable.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/hashable/1.2.7.0/hashable.cabal"
                 }
             ]
         },
@@ -711,7 +641,7 @@
                 {
                     "sha256": "ca2f237cba5db9c9c4238d41a7d8b583c5ca0ce8491de4027b26b17793fc3a87",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/case-insensitive/1.2.0.11/case-insensitive.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/case-insensitive/1.2.0.11/case-insensitive.cabal"
                 }
             ]
         },
@@ -724,18 +654,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "http-types-0.12.1",
+            "name": "http-types-0.12.2",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "3fa7715428f375b6aa4998ef17822871d7bfe1b55ebd9329efbacd4dad9969f3",
+                    "sha256": "523102d7ba8923e1b399cfd2a1c821e858146ecd934fc147c3acd0fd2b2f9305",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/http-types-0.12.1.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/http-types-0.12.2.tar.gz"
                 },
                 {
-                    "sha256": "12ce2fc081fde3cf219b630c2fb3815183a64eee236ba7aa735f666eab949610",
+                    "sha256": "fabf70c7b0da898afeacaccec101cf2738afed7213dd3bd4d43efff63cd22827",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/http-types/0.12.1/http-types.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/http-types/0.12.2/http-types.cabal"
                 }
             ]
         },
@@ -759,7 +689,31 @@
                 {
                     "sha256": "124a5241860711a0e5c10e94d8aec8a127f0094df7a537cc1786e198d7571dfe",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/unordered-containers/0.2.9.0/unordered-containers.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/unordered-containers/0.2.9.0/unordered-containers.cabal"
+                }
+            ]
+        },
+        {
+            "build-commands": [
+                "ghc -threaded --make Setup",
+                "./Setup configure --prefix=/app",
+                "./Setup build",
+                "./Setup install"
+            ],
+            "buildsystem": "simple",
+            "cleanup": [],
+            "name": "async-2.2.1",
+            "only-arches": [],
+            "sources": [
+                {
+                    "sha256": "8f0b86022a1319d3c1c68655790da4b7f98017982e27ec3f3dbfe01029d39027",
+                    "type": "archive",
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/async-2.2.1.tar.gz"
+                },
+                {
+                    "sha256": "61789382f449a02f827e70a029ba8f24a223b9c6b3792bb094fbd41ee360e851",
+                    "type": "file",
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/async/2.2.1/async.cabal"
                 }
             ]
         },
@@ -783,7 +737,7 @@
                 {
                     "sha256": "aa0869aa80026d0bfbbeee44a6381ccd2a2c960ce3ef7d484b14270e054ca79a",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/vault/0.3.1.2/vault.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/vault/0.3.1.2/vault.cabal"
                 }
             ]
         },
@@ -807,7 +761,7 @@
                 {
                     "sha256": "01887ed945e74c3c361b00700bd9aeead37d1124d39c0d4f190f89fb0e909c47",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/uuid-types/1.0.3/uuid-types.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/uuid-types/1.0.3/uuid-types.cabal"
                 }
             ]
         },
@@ -831,7 +785,7 @@
                 {
                     "sha256": "dd49abc76bd8e2b57e7a057dc2bb742a00527b4bf9350f9374be03b5934e55d8",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/scientific/0.3.6.2/scientific.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/scientific/0.3.6.2/scientific.cabal"
                 }
             ]
         },
@@ -844,18 +798,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "psqueues-0.2.7.0",
+            "name": "psqueues-0.2.7.1",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "4cf3628884015b091471e4425f5414207fd547cf71d9546e9b7318d857624fea",
+                    "sha256": "047e42ecd50d09fef99d1db9f8b1e511b64ea4b41afc435ad5fdd373d2ea8ec1",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/psqueues-0.2.7.0.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/psqueues-0.2.7.1.tar.gz"
                 },
                 {
-                    "sha256": "189970837d0aae01f48cd2a8aac6ce314191939e118cc0488aee1fb12da1956a",
+                    "sha256": "7ee401e558e0ec0f5e7c0584d9d31fd66dc5c1ec8316bf87b064f738596a660c",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/psqueues/0.2.7.0/psqueues.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/psqueues/0.2.7.1/psqueues.cabal"
                 }
             ]
         },
@@ -868,18 +822,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "network-2.6.3.6",
+            "name": "auto-update-0.1.4.1",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "9bde0609ab39441daa7da376c09f501e2913305ef64be5d245c45ba84e5515a5",
+                    "sha256": "35ff4b15ecf505f1cf3eb78f83deaa89879d92d40335b6580b2383c622efcfc9",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/network-2.6.3.6.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/auto-update-0.1.4.1.tar.gz"
                 },
                 {
-                    "sha256": "1ca79d81af02d7acd6032d5e6c9bde4618a8fdcfbe19bd42b49d420183975df0",
+                    "sha256": "4361715d6a145a9d06eac261714f5e12399879440bdcd5815a0205da4b2defab",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/network/2.6.3.6/network.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/auto-update/0.1.4.1/auto-update.cabal"
                 }
             ]
         },
@@ -892,18 +846,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "wai-3.2.1.2",
+            "name": "network-2.8.0.0",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "282351461f19fbac26aa0a7896d7ab583b4abef522fcd9aba944f1848e58234b",
+                    "sha256": "c8905268b7e3b4cf624a40245bf11b35274a6dd836a5d4d531b5760075645303",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/wai-3.2.1.2.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/network-2.8.0.0.tar.gz"
                 },
                 {
-                    "sha256": "eea52c4967d8609c2f79213d6dffe6d6601034f1471776208404781de7051410",
+                    "sha256": "aae171e6c6028a7791dbe4de5b9d2da398056359e3cc7927465ffa3cdae1aa0b",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/wai/3.2.1.2/wai.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/network/2.8.0.0/network.cabal"
                 }
             ]
         },
@@ -916,18 +870,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "simple-sendfile-0.2.27",
+            "name": "streaming-commons-0.2.1.0",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "f68572592099a2db3f7212ac7d133447ae5bbb2605285d3de1a29a52d9c79caf",
+                    "sha256": "d8d1fe588924479ea7eefce8c6af77dfb373ee6bde7f4691bdfcbd782b36d68d",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/simple-sendfile-0.2.27.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/streaming-commons-0.2.1.0.tar.gz"
                 },
                 {
-                    "sha256": "0f64a907a08255d01b9ab58e6c9f72e3f42c22948303c2e914b1b53034a1fa2f",
+                    "sha256": "163af02944f374f316e35257c1afbffefd2c2852a85a151d1ea0ad22152cf28d",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/simple-sendfile/0.2.27/simple-sendfile.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/streaming-commons/0.2.1.0/streaming-commons.cabal"
                 }
             ]
         },
@@ -940,18 +894,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "iproute-1.7.5",
+            "name": "wai-3.2.2",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "ed638e0b0a098ee4a0f5c5fe48b2a803939c0be4a3612b2d86e16fa447b581ef",
+                    "sha256": "2a64d54901d7bcc3c59dd94dcc99b5dcbbb95b4ec9176e677877888526c17fe1",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/iproute-1.7.5.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/wai-3.2.2.tar.gz"
                 },
                 {
-                    "sha256": "99a46f811058c0d7c5cd05b288a245f681d4bedcd7aa60d6bcc18d21a4558d65",
+                    "sha256": "0d38213a13820a418591fa69f767c44616574c833b1fc9e1425ac59ed3d35704",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/iproute/1.7.5/iproute.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/wai/3.2.2/wai.cabal"
                 }
             ]
         },
@@ -964,18 +918,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "async-2.1.1.1",
+            "name": "simple-sendfile-0.2.28",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "cd83e471466ea6885b2e8fb60f452db3ac3fdf3ea2d6370aa1e071ebc37544e2",
+                    "sha256": "a9800b79d41c3896181c93b3805135440bca31b5524a33303b7e32aa1bb29870",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/async-2.1.1.1.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/simple-sendfile-0.2.28.tar.gz"
                 },
                 {
-                    "sha256": "2ce05388bbd8d78e17f130acfe60b2bd2b5a09b995c9f4eb7c2d1ae41a8b1652",
+                    "sha256": "74f421727034ad218278346f9fc409f771120e45915014aa67b10dcb5d05923f",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/async/2.1.1.1/async.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/simple-sendfile/0.2.28/simple-sendfile.cabal"
                 }
             ]
         },
@@ -988,18 +942,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "streaming-commons-0.1.19",
+            "name": "iproute-1.7.7",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "43fcae90df5548d9968b31371f13ec7271df86ac34a484c094616867ed4217a7",
+                    "sha256": "e6a3fe4a6f2a78fcee0f98255f97232d8b6b9b1fa48faee3bef96f0b462a4b3d",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/streaming-commons-0.1.19.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/iproute-1.7.7.tar.gz"
                 },
                 {
-                    "sha256": "3a02f84578f75eac1425dca877f8d697b68d379a21970c1dad96196620404803",
+                    "sha256": "bb9b8ec5c89de364df290e5d3f8d72449919f44a9a8f45a0550f63c46933085f",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/streaming-commons/0.1.19/streaming-commons.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/iproute/1.7.7/iproute.cabal"
                 }
             ]
         },
@@ -1023,7 +977,7 @@
                 {
                     "sha256": "6a0baba19991e84ef939056e7b411ad3a1ea0fb5e1e8fce7ca50e96c84b206c8",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/attoparsec/0.13.2.2/attoparsec.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/attoparsec/0.13.2.2/attoparsec.cabal"
                 }
             ]
         },
@@ -1047,7 +1001,7 @@
                 {
                     "sha256": "0551a9433d5ce29ad98f2839f025204c566b69aa1ab45d8488042fe8cde9ceff",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/http-date/0.0.8/http-date.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/http-date/0.0.8/http-date.cabal"
                 }
             ]
         },
@@ -1060,18 +1014,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "aeson-1.2.4.0",
+            "name": "aeson-1.4.2.0",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "3401dba4fddb92c8a971f6645b38e2f8a1b286ef7061cd392a1a567640bbfc9b",
+                    "sha256": "75ce71814a33d5e5568208e6806a8847e7ba47fea74d30f6a8b1b56ecb318bd0",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/aeson-1.2.4.0.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/aeson-1.4.2.0.tar.gz"
                 },
                 {
-                    "sha256": "2ff56812644c3e272fef6b19aaff1ddab81c9984b1c1f8969521cb856bc22eab",
+                    "sha256": "8166752a9669597db375343df19805069595fed9c613f98504e418849f40fe18",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/aeson/1.2.4.0/aeson.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/aeson/1.4.2.0/aeson.cabal"
                 }
             ]
         },
@@ -1084,18 +1038,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "http2-1.6.3",
+            "name": "http2-1.6.4",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "61620eca0f57875a6a9bd24f9cc04c301b5c3c668bf98f85e9989aad5d069c43",
+                    "sha256": "2fcadd614cb8fa031e23a0fae096be76b08af7bbd525dc67096bd575cc3f1e66",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/http2-1.6.3.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/http2-1.6.4.tar.gz"
                 },
                 {
-                    "sha256": "c6ce9c4b4899a2177420d272b7e027aa4720cddb0ed465bebff4acb221165da1",
+                    "sha256": "458f55de9552a3ec8111ca9951f27c376bed2acb4e1dda42faeb2e98fd2c8f42",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/http2/1.6.3/http2.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/http2/1.6.4/http2.cabal"
                 }
             ]
         },
@@ -1108,18 +1062,18 @@
             ],
             "buildsystem": "simple",
             "cleanup": [],
-            "name": "warp-3.2.23",
+            "name": "warp-3.2.26",
             "only-arches": [],
             "sources": [
                 {
-                    "sha256": "a0aaff3afbda9675b61ec5725ced21fd48694257ba350fd2d2e07a4822c4698b",
+                    "sha256": "4ca338568a3b867e36d6f01255bf562429f25d8f1373e79122881bcd461803e9",
                     "type": "archive",
-                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/warp-3.2.23.tar.gz"
+                    "url": "https://s3.amazonaws.com/hackage.fpcomplete.com/package/warp-3.2.26.tar.gz"
                 },
                 {
-                    "sha256": "aa63f6fbcea0835c068c65bc9805fd0f3ec279c1b06744bfc357855d2c34f807",
+                    "sha256": "c450cb770f33819eda56e0d2025567ac0928dc77edce24ab36343c8dccef3b56",
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/981156a5b5e4bc27a52cb67de7a77a68a95731ea/warp/3.2.23/warp.cabal"
+                    "url": "https://raw.githubusercontent.com/commercialhaskell/all-cabal-files/a5f22172fce750e93afa6987320f5c5be62b5670/warp/3.2.26/warp.cabal"
                 }
             ]
         },
@@ -1169,6 +1123,6 @@
         }
     ],
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.11",
+    "runtime-version": "5.12",
     "sdk": "org.kde.Sdk"
 }
